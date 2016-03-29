@@ -1,0 +1,55 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+
+class {{ prefix }}{{ module_info.name }}Interactor: NSObject, {{ prefix }}{{ module_info.name }}InteractorProtocol {
+
+    var datamanager:SampleVIPERListDetailManagerProtocol
+    
+	//MARK: - NSObject
+    override init() {
+        
+        datamanager = {{ prefix }}{{ module_info.name }}Manager()
+
+        super.init()
+    }
+    
+    deinit {
+        
+    }
+
+	//MARK: - {{ prefix }}{{ module_info.name }}InteractorProtocol
+    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol?
+
+    func fetchData() {
+		
+		// ask datamanager for new data
+		//...
+		//call output's dataHasBeenFetched() when done
+
+        let predicate = NSPredicate(format: "name == %@", argumentArray: ["Test2"])
+        datamanager.findItem(predicate) { (result, error) in
+            
+            guard let detail = result else {
+                
+                guard let err = error  else {
+                    
+                    return
+                }
+                
+                self.output?.presentError(err)
+                
+                return
+            }
+            
+            self.output?.presentDetail(detail)
+        }
+    }
+
+}

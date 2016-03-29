@@ -1,0 +1,48 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_info.name }}ModuleProtocol, {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
+
+	//MARK: - NSObject
+	    
+    deinit {
+        
+        rootView.output = nil
+        rootPresenter.output = nil
+    }
+
+	//MARK: - {{ prefix }}{{ module_info.name }}ModuleProtocol
+	
+    var rootPresenter:{{ prefix }}{{ module_info.name }}PresenterProtocol
+    var rootView:{{ prefix }}{{ module_info.name }}ViewProtocol
+    var rootInteractor:{{ prefix }}{{ module_info.name }}InteractorProtocol
+    var view: UIViewController {
+        
+        get {
+            
+            return self.rootView.viewController
+        }
+    }
+
+    override init() {
+        
+        rootInteractor = {{ prefix }}{{ module_info.name }}Interactor()
+        
+        rootView = {{ prefix }}{{ module_info.name }}ViewController(nibName:"{{ prefix }}{{ module_info.name }}ViewController", bundle: NSBundle.mainBundle())
+        rootPresenter = {{ prefix }}{{ module_info.name }}Presenter(view: rootView, interactor:rootInteractor)
+        rootView.output = rootPresenter
+        
+        super.init()
+
+        rootPresenter.output = self
+
+    }
+}

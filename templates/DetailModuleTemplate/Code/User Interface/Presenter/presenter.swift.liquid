@@ -1,0 +1,54 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+
+class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ module_info.name }}PresenterProtocol {
+
+	//MARK: - NSObject    
+	
+    deinit {
+        
+        rootInteractor.output = nil
+    }
+
+	//MARK: - {{ prefix }}{{ module_info.name }}PresenterProtocol
+	    
+    var rootView:{{ prefix }}{{ module_info.name }}ViewProtocol
+    var rootInteractor:{{ prefix }}{{ module_info.name }}InteractorProtocol
+    var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? 
+
+    required init(view: {{ prefix }}{{ module_info.name }}ViewProtocol, interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol) {
+
+        rootView = view
+        rootInteractor = interactor
+        
+        super.init()
+
+        rootInteractor.output = self
+        
+    }
+
+    func viewHasBeenLoaded() {
+        
+        self.rootInteractor.fetchData()
+    }
+    
+    func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model) {
+
+		self.rootView.sampleProperty = detail.name
+        self.rootView.sampleError = nil
+    }
+    
+    func presentError(error: NSError) {
+        
+        self.rootView.sampleProperty = nil
+        self.rootView.sampleError = error.localizedDescription
+    }
+    
+}

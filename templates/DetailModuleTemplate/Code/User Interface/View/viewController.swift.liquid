@@ -1,0 +1,79 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}ViewController: UIViewController, {{ prefix }}{{ module_info.name }}ViewProtocol, UITextFieldDelegate  {
+
+    @IBOutlet var sampleNameTextField:UITextField?
+    @IBOutlet var errorLabel:UILabel?
+    @IBOutlet var button:UIButton?
+
+	//MARK: - NSObject
+    deinit {
+        
+    }
+    
+	//MARK: - UIViewController
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+
+
+		//tell presenter about view load completion
+		self.output?.viewHasBeenLoaded()
+
+	}    
+
+    //MARK: - IBActions
+    @IBAction func onButtonClicked(sender:AnyObject?) {
+        
+    }
+
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+
+	//MARK: - {{ prefix }}{{ module_info.name }}ViewProtocol
+    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol?
+
+    var viewController:UIViewController {
+        
+        get {
+            
+            return self
+        }
+    }
+    
+    var sampleProperty:String? {
+
+    	didSet {
+
+			self.sampleNameTextField?.text = self.sampleProperty
+            
+            guard let txt = self.sampleProperty where txt.characters.count > 0 else {
+                
+                self.button?.enabled = false
+                return
+            }
+            self.button?.enabled = true
+    	}
+    }
+    
+    var sampleError:String? {
+        
+        didSet {
+            
+            self.errorLabel?.text = self.sampleError
+        }
+    }
+
+}
