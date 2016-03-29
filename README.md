@@ -79,6 +79,7 @@ Rambafile successfully created! Now add some templates to the Rambafile and run 
 To configure Generamba you can simply open file 'Rambafile' in you text editor
 
 Find templates section and change it following way
+
 was
 ```
 ### Templates
@@ -87,6 +88,7 @@ templates:
 #- {name: remote_template_name, git: 'https://github.com/igrekde/remote_template'}
 #- {name: catalog_template_name}
 ```
+
 become
 ```
 ### Templates
@@ -106,6 +108,7 @@ To create a new module using templates you should execute
 $ generamba gen YourNewModule DetailModuleTemplate
 ```
 where YourNewModule is your module classname
+
 DetailModuleTemplate - template, used to create YourNewModule
 
 for case when everything was fine you will see a table like this
