@@ -34,10 +34,12 @@ $ git clone https://github.com/paulyeshchyk/Templates-VIPER sampleTemplates
 
 # In terminal change current directory to projects root
 ```
-cd ~/Documents/projects/NoName
+$ cd ~/Documents/projects/NoName
 ```
-# Run ```generamba setup``` in the project root folder. This command helps to create Rambafile that define all configuration needed to generate code. You can modify this file directly in future.
+# Setup generamba
+run ```$ generamba setup```. This command helps to create Rambafile that define all configuration needed to generate code. You can modify this file directly in future.
 answer all questions asked by Generamba
+
 ```
 The company name which will be used in the headers: EPAM
 The name of your project is NoName. Do you want to use it? (yes/no) yes
@@ -54,6 +56,7 @@ The default path for creating new modules: Modules
 Are you using Cocoapods? (yes/no) no
 Are you using Carthage? (yes/no) no
 ```
+
 as a result tableview will be provided
 i.e.
 ```
