@@ -1,5 +1,5 @@
 
-# Overview
+## Overview
 templates was build using [Generamba](https://github.com/rambler-ios/Generamba)
 
 
@@ -20,23 +20,23 @@ Run the command
 ```gem install generamba```
 
 ## Setup your project
-# Pull templates repository. Run terminal, then execute set of commands
+### Pull templates repository. Run terminal, then execute set of commands
 ```
 $ cd ~/Documents/projects
 $ git clone https://github.com/paulyeshchyk/Templates-VIPER sampleTemplates
 ```
-# Create a new project ("~/Documents/projects/NoName" folder was used)
+### Create a new project ("~/Documents/projects/NoName" folder was used)
 
 ![new project step 1](https://cloud.githubusercontent.com/assets/4526112/14106417/a91cd910-f5b9-11e5-9b06-b220f08705d8.png)
 ![new project step 2](https://cloud.githubusercontent.com/assets/4526112/14106418/a91d41ca-f5b9-11e5-9eca-7826128ef5ed.png)
 ![new project step 3](https://cloud.githubusercontent.com/assets/4526112/14106416/a91bc8c2-f5b9-11e5-9342-b10d3676c4f4.png)
 ![new project step 4](https://cloud.githubusercontent.com/assets/4526112/14106415/a8efafbc-f5b9-11e5-879a-9c1a11dc4fc7.png)
 
-# In terminal change current directory to projects root
+### In terminal change current directory to projects root
 ```
 $ cd ~/Documents/projects/NoName
 ```
-# Setup generamba
+## Setup generamba
 run ```$ generamba setup```. This command helps to create Rambafile that define all configuration needed to generate code. You can modify this file directly in future.
 answer all questions asked by Generamba
 
@@ -75,7 +75,7 @@ i.e.
 
 Rambafile successfully created! Now add some templates to the Rambafile and run `generamba template install`.
 ```
-# Configure Generamba
+## Configure Generamba
 To configure Generamba you can simply open file 'Rambafile' in you text editor
 
 Find templates section and change it following way
@@ -94,13 +94,13 @@ templates:
 - {name: DetailModuleTemplate, local: '/Users/John_Doe/Documents/projects/sampleTemplates/templates/DetailModuleTemplate/'}
 ```
 
-# Template installation
+## Template installation
 This step is very important. Every time you pulled templates from git you should run this command
 ```
 $ generamba template install
 ```
 
-# Create you own module using template
+## Create you own module using template
 To create a new module using templates you should execute
 ```
 generamba gen YourNewModule DetailModuleTemplate
