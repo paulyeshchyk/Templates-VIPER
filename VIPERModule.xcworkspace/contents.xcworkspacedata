@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <Group
+      location = "group:samples"
+      name = "samples">
+      <Group
+         location = "group:DetailModuleTemplate"
+         name = "DetailModuleTemplate">
+      </Group>
+      <FileRef
+         location = "group:C1">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:templates"
+      name = "templates">
+      <Group
+         location = "group:DetailModuleTemplate"
+         name = "DetailModuleTemplate">
+         <Group
+            location = "group:Code"
+            name = "Code">
+            <FileRef
+               location = "group:protocols.swift.liquid">
+            </FileRef>
+            <Group
+               location = "group:Application Logic"
+               name = "Application Logic">
+               <Group
+                  location = "group:Interactor"
+                  name = "Interactor">
+                  <FileRef
+                     location = "group:interactor.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Manager"
+                  name = "Manager">
+                  <FileRef
+                     location = "group:manager.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Model"
+                  name = "Model">
+                  <FileRef
+                     location = "group:model.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Module"
+                  name = "Module">
+                  <FileRef
+                     location = "group:module.swift.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+            <Group
+               location = "group:Service"
+               name = "Service">
+               <FileRef
+                  location = "group:service.h.liquid">
+               </FileRef>
+               <FileRef
+                  location = "group:service.m.liquid">
+               </FileRef>
+               <FileRef
+                  location = "group:service.swift.liquid">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:User Interface"
+               name = "User Interface">
+               <Group
+                  location = "group:Presenter"
+                  name = "Presenter">
+                  <FileRef
+                     location = "group:presenter.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:View"
+                  name = "View">
+                  <FileRef
+                     location = "group:viewController.swift.liquid">
+                  </FileRef>
+                  <FileRef
+                     location = "group:viewController.xib.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:DetailModuleTemplate.rambaspec">
+         </FileRef>
+         <Group
+            location = "group:Tests"
+            name = "Tests">
+            <Group
+               location = "group:Service"
+               name = "Service">
+               <FileRef
+                  location = "group:service_tests.swift.liquid">
+               </FileRef>
+            </Group>
+         </Group>
+      </Group>
+   </Group>
+   <Group
+      location = "group:xcodetemplates"
+      name = "xcodetemplates">
+      <Group
+         location = "group:viper"
+         name = "viper">
+         <Group
+            location = "group:module.xctemplate"
+            name = "module.xctemplate">
+            <FileRef
+               location = "group:TemplateIcon.png">
+            </FileRef>
+            <FileRef
+               location = "group:TemplateIcon@2x.png">
+            </FileRef>
+            <FileRef
+               location = "group:TemplateInfo.plist">
+            </FileRef>
+            <Group
+               location = "group:UIViewController"
+               name = "UIViewController">
+               <Group
+                  location = "group:___FILEBASENAMEASIDENTIFIER___"
+                  name = "___FILEBASENAMEASIDENTIFIER___">
+                  <FileRef
+                     location = "group:___FILEBASENAME___Interactor.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___Manager.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___Model.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___Module.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___Presenter.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___ViewController.swift">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAME___ViewController.xib">
+                  </FileRef>
+                  <FileRef
+                     location = "group:___FILEBASENAMEASIDENTIFIER___Protocols.swift">
+                  </FileRef>
+               </Group>
+            </Group>
+         </Group>
+      </Group>
+   </Group>
+</Workspace>
