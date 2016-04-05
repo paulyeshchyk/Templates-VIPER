@@ -1,0 +1,52 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+typealias {{ prefix }}{{ module_info.name }}AddDetailOutput = ()->()
+protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
+
+    var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol {get set}
+    var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol {get set}
+    var splitView:{{ prefix }}{{ module_info.name }}ViewProtocol {get set}
+
+    var masterPresenter:PresenterProtocol? {get set}
+    var detailPresenter:PresenterProtocol? {get set}
+    var emptyDetailPresenter:PresenterProtocol? {get set}
+}
+
+protocol {{ prefix }}{{ module_info.name }}ViewProtocol:ViewProtocol {
+
+//    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? {get set}
+    func setSplittedControllers(viewControllers:[UIViewController])
+}
+
+protocol {{ prefix }}{{ module_info.name }}InteractorProtocol:InteractorProtocol {
+
+    var selectedItem:{{ prefix }}{{ module_info.name }}Model? { get set }
+}
+
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol {
+
+    var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol? {get set}
+    var masterPresenter:PresenterProtocol? {get set}
+    var detailPresenter:PresenterProtocol? {get set}
+    var emptyDetailPresenter:PresenterProtocol? {get set}
+
+    var selectedItem:{{ prefix }}{{ module_info.name }}Model? { get set }
+
+
+    init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, splitInteractor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
+}
+
+protocol {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
+
+//    var hasSelectedItem:Bool { get }
+
+}

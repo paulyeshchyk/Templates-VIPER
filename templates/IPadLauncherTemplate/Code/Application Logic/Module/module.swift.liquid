@@ -1,0 +1,68 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.name }}Protocol {
+
+    //MARK: - NSObject
+
+    deinit {
+
+    }
+
+    var rootWindow:UIWindow
+    var root:UIViewController?
+
+    //MARK: -  {{ prefix }}{{ module_info.name }}ModuleProtocol
+    func launch() {
+
+        self.root = self.splitModule.makeRoot()
+    }
+
+    var splitModule:{{ prefix }}SplitModuleProtocol
+    let listModule:{{ prefix }}ListModuleProtocol
+    var detailModule:{{ prefix }}DetailModuleProtocol
+    //let emptyDetailModule:{{ prefix }}EmptyDetailModuleProtocol
+
+    required init(window:UIWindow) {
+
+        splitModule = {{ prefix }}SplitModule(window: window)
+        listModule = {{ prefix }}ListModule(window: window)
+        detailModule = {{ prefix }}DetailModule(window: window)
+        //emptyDetailModule = {{ prefix }}EmptyDetailModule(window: window)
+
+        rootWindow = window
+        super.init()
+
+        splitModule.masterPresenter = listModule.presenter
+        splitModule.detailPresenter = detailModule.presenter
+        //splitModule.emptyDetailPresenter = emptyDetailModule.presenter
+
+        //listModule.openOutput = {(item) in
+        //
+        //
+        //self.detailModule.detail = item
+        //self.splitModule.presenter.selectedItem = item
+        //}
+
+        //listModule.addOutput = {() in
+        //
+        //}
+
+        //detailModule.saveOutput = {(ponso) in
+
+        //  self.listModule.refreshPonso(ponso)
+        //}
+
+        //detailModule.cancelOutput = {() in
+        //
+        //}
+    }
+}

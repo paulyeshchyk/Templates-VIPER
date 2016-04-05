@@ -1,0 +1,24 @@
+# Template information section
+name: IPadLauncher
+summary: IPadLauncher description
+author: EPAm
+version: 1.0.0
+license:
+
+# The declarations for code files
+code_files:
+- {name: Application Logic/Protocols.swift, path: Code/protocols.swift.liquid}
+- {name: Application Logic/Module/Module.swift, path: Code/Application Logic/Module/module.swift.liquid}
+# - {name: Application Logic/Model/Model.swift, path: Code/Application Logic/Model/model.swift.liquid}
+# - {name: Application Logic/Interactor/Interactor.swift, path: Code/Application Logic/Interactor/interactor.swift.liquid}
+# - {name: Application Logic/Manager/Manager.swift, path: Code/Application Logic/Manager/manager.swift.liquid}
+# - {name: User Interface/Presenter/Presenter.swift, path: Code/User Interface/Presenter/presenter.swift.liquid}
+# - {name: User Interface/View/ViewController.swift, path: Code/User Interface/View/viewController.swift.liquid}
+# - {name: User Interface/View/ViewController.xib, path: Code/User Interface/View/viewController.xib.liquid}
+
+# The declarations for test files
+test_files:
+# - {name: Service/ServiceTests.swift, path: Tests/Service/service_tests.swift.liquid}
+
+# Template dependencies
+dependencies:

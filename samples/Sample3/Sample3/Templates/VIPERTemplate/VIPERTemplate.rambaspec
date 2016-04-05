@@ -1,0 +1,16 @@
+# Template information section
+name: VIPERTemplate
+summary: VIPERTemplate description
+author: EPAm
+version: 1.0.0
+license:
+
+# The declarations for code files
+code_files:
+- {name: Protocols.swift, path: Code/Protocols.swift.liquid}
+
+# The declarations for test files
+test_files:
+
+# Template dependencies
+dependencies:

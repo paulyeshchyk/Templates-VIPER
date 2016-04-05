@@ -2,11 +2,10 @@
 ## Overview
 templates was build using [Generamba](https://github.com/rambler-ios/Generamba)
 
-
-
 ## Check Ruby version
 Ruby 2.2 required
 check Ruby's version by running command 
+
 ```
 $ ruby --version
 ```
@@ -17,7 +16,9 @@ for case when Ruby was not installed please follow [Installing Ruby With RVM gui
 
 Run the command 
 
-```$ gem install generamba```
+```
+$ gem install generamba
+```
 
 ### Setup your project
 ## Pull templates repository. Run terminal, then execute set of commands
@@ -25,6 +26,7 @@ Run the command
 $ cd ~/Documents/projects
 $ git clone https://github.com/paulyeshchyk/Templates-VIPER sampleTemplates
 ```
+
 ## Create a new project ("~/Documents/projects/NoName" folder was used)
 
 ![new project step 1](https://cloud.githubusercontent.com/assets/4526112/14106417/a91cd910-f5b9-11e5-9b06-b220f08705d8.png)

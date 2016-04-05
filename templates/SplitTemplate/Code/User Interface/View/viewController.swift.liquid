@@ -1,0 +1,38 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}ViewController: UISplitViewController, {{ prefix }}{{ module_info.name }}ViewProtocol, UITextFieldDelegate  {
+
+    var viewController:UIViewController {
+
+        get {
+
+            return self
+        }
+    }
+
+    func setSplittedControllers(viewControllers:[UIViewController]) {
+
+        let count = viewControllers.count
+        if count != 2 {
+
+            return
+        }
+        self.viewControllers = viewControllers
+    }
+
+    override func viewDidLoad() {
+
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+}

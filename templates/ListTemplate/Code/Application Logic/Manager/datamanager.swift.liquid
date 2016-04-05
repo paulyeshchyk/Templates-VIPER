@@ -1,0 +1,71 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}DataManager: NSObject, {{ prefix }}{{ module_info.name }}DatasourceProtocol {
+
+    var listener: {{ prefix }}{{ module_info.name }}DataSourceListenerProtocol?
+    var items:[{{ prefix }}{{ module_info.name }}Model] = [
+        {{ prefix }}{{ module_info.name }}Model(aIdent:"ABC",aText: "ABC"),
+        {{ prefix }}{{ module_info.name }}Model(aIdent:"BCD",aText: "BCD"),
+        {{ prefix }}{{ module_info.name }}Model(aIdent:"CDE",aText: "CDE"),
+        {{ prefix }}{{ module_info.name }}Model(aIdent:"DEF",aText: "DEF")]
+
+
+    func numberOfItems()->Int {
+
+        return items.count
+    }
+
+    func itemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model {
+
+        return items[index]
+    }
+
+    func updatePonso(ponso:{{ prefix }}{{ module_info.name }}Model) {
+
+
+        let arr = items.filter({ (found) -> Bool in
+
+            let compareResult = found.ident.compare(ponso.ident)
+            return ( compareResult == .OrderedSame)
+        })
+
+        for obj in arr {
+
+            obj.text = ponso.text
+        }
+
+        listener?.hasUpdatedData()
+
+    }
+
+    func indexOfItem(item: {{ prefix }}{{ module_info.name }}Model) -> Int {
+
+        var result:Int = -1
+
+        let index =  items.indexOf({ (found:{{ prefix }}{{ module_info.name }}Model) -> Bool in
+
+            let compareResult = found.ident.compare(item.ident)
+
+            return (compareResult == .OrderedSame)
+        })
+
+        result = index!
+
+        return result
+    }
+
+    func addPonso(ponso:{{ prefix }}{{ module_info.name }}Model) {
+
+        self.items.append(ponso)
+    }
+
+}

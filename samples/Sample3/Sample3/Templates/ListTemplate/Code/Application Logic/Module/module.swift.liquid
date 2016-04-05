@@ -1,0 +1,98 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_info.name }}ModuleProtocol, {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
+
+    var presenter: {{ prefix }}{{ module_info.name }}PresenterProtocol
+    var listView: {{ prefix }}{{ module_info.name }}ViewProtocol
+    let datamanager: {{ prefix }}{{ module_info.name }}DatasourceProtocol
+    var listInteractor: {{ prefix }}{{ module_info.name }}InteractorProtocol
+    var addOutput: {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput?
+    var openOutput: {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput?
+
+    var routerWindow:UIWindow
+    var view: UIViewController {
+
+        get {
+
+            return self.listView.viewController
+        }
+    }
+
+    required init(window: UIWindow) {
+
+        routerWindow = window
+
+        datamanager = {{ prefix }}{{ module_info.name }}DataManager()
+        listInteractor = {{ prefix }}{{ module_info.name }}Interactor(datasource:datamanager)
+
+        listView = {{ prefix }}{{ module_info.name }}ViewController(nibName:"{{ prefix }}{{ module_info.name }}ViewController", bundle: NSBundle.mainBundle())
+        presenter = {{ prefix }}{{ module_info.name }}Presenter(view: listView, interactor:listInteractor)
+
+        listInteractor.output = presenter
+
+        listView.output = presenter
+        listView.input = listInteractor
+
+        super.init()
+        presenter.output = self
+    }
+
+    func pushFrom(navigationController:UINavigationController) {
+
+        navigationController.pushViewController(self.view, animated: true)
+    }
+
+    func popFrom(navigationController: UINavigationController) {
+
+        navigationController.popViewControllerAnimated(true)
+    }
+
+    func makeRoot() -> UIViewController{
+
+        routerWindow.rootViewController = self.view
+        routerWindow.makeKeyAndVisible()
+        return self.view
+    }
+
+    func updatePonso(ponso: {{ prefix }}{{ module_info.name }}Model) {
+
+        datamanager.updatePonso(ponso)
+    }
+
+    func refreshPonso(ponso: {{ prefix }}{{ module_info.name }}Model) {
+
+        let index = datamanager.indexOfItem(ponso)
+        self.presenter.redrawItemAtIndex(index)
+    }
+
+    func openItem(item: {{ prefix }}{{ module_info.name }}Model) {
+
+        guard let openOutput = self.openOutput else {
+
+            return
+        }
+
+        openOutput(item:item)
+    }
+
+    func openAddDetail() {
+
+        guard let addOutput = self.addOutput else {
+
+            return
+        }
+
+        addOutput()
+
+    }
+
+}

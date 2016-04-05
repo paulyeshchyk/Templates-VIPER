@@ -1,0 +1,48 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+
+let {{ prefix }}{{ module_info.name }}ManagerErrorDomain:String = "{{ prefix }}{{ module_info.name }}ManagerErrorDomain"
+let {{ prefix }}{{ module_info.name }}ManagerErrorCodeNothingFound = 1
+let {{ prefix }}{{ module_info.name }}ManagerErrorDescriptionNothingFound = "found no items"
+
+
+class {{ prefix }}{{ module_info.name }}Manager: NSObject, {{ prefix }}{{ module_info.name }}ManagerProtocol {
+
+    var cache  = [{{ prefix }}{{ module_info.name }}Model] ()
+    
+	//MARK: - NSObject
+    override init() {
+        
+        super.init()
+        
+        self.cache.append({{ prefix }}{{ module_info.name }}Model(nameValue: "Test"))
+        self.cache.append({{ prefix }}{{ module_info.name }}Model(nameValue: "Test1"))
+        self.cache.append({{ prefix }}{{ module_info.name }}Model(nameValue: "Test2"))
+    }
+    
+    deinit {
+        
+    }
+    
+	//MARK: - SampleVIPERListDetailManagerProtocol
+    func findItem(usingPredicate:NSPredicate, completion:{{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock) {
+        
+        let result = (self.cache as NSArray).filteredArrayUsingPredicate(usingPredicate)
+        guard let item = result.last as? {{ prefix }}{{ module_info.name }}Model else {
+            
+            let userInfo:[NSString:AnyObject] = [NSLocalizedDescriptionKey:{{ prefix }}{{ module_info.name }}ManagerErrorDescriptionNothingFound]
+            completion(result: nil, error: NSError(domain: {{ prefix }}{{ module_info.name }}ManagerErrorDomain, code: {{ prefix }}{{ module_info.name }}ManagerErrorCodeNothingFound, userInfo: userInfo))
+            return
+        }
+    
+        completion(result: item, error: nil)
+    }
+    
+}

@@ -1,0 +1,30 @@
+### Headers settings
+company: NoName
+
+### Xcode project settings
+project_name: Sample3.xcodeproj
+xcodeproj_path: ../Sample3.xcodeproj
+prefix: NN
+
+### Code generation settings section
+# The main project target name
+project_target: Sample3
+
+# The file path for new modules
+project_file_path: Modules
+
+# The Xcode group path to new modules
+project_group_path: Sample3/Modules
+
+### Templates
+templates:
+- {name: VIPERTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/VIPERTemplate'}
+- {name: IPadLauncherTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/IPadLauncherTemplate'}
+- {name: IPhoneLauncherTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/IPhoneLauncherTemplate'}
+- {name: DetailTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/DetailTemplate'}
+- {name: EmptyDetailTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/EmptyDetailTemplate'}
+- {name: ListTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate'}
+- {name: SplitTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/SplitTemplate'}
+
+#- {name: remote_template_name, git: 'https://github.com/igrekde/remote_template'}
+#- {name: catalog_template_name}
