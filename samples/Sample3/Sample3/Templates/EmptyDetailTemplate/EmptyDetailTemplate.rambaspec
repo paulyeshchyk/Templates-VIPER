@@ -12,7 +12,7 @@ code_files:
 - {name: User Interface/Presenter/Presenter.swift, path: Code/User Interface/Presenter/presenter.swift.liquid}
 - {name: User Interface/View/ViewController.swift, path: Code/User Interface/View/view.swift.liquid}
 - {name: User Interface/View/ViewController.xib, path: Code/User Interface/View/view.xib.liquid}
-# - {name: Application Logic/Module/Module.swift, path: Code/Application Logic/Module/module.swift.liquid}
+- {name: Application Logic/Module/Module.swift, path: Code/Application Logic/Module/module.swift.liquid}
 # - {name: Application Logic/Model/Model.swift, path: Code/Application Logic/Model/model.swift.liquid}
 # - {name: Application Logic/Manager/Manager.swift, path: Code/Application Logic/Manager/manager.swift.liquid}
 

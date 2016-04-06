@@ -2,7 +2,7 @@
 //  NNListModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -58,9 +58,10 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
 
     func makeRoot() -> UIViewController{
 
-        routerWindow.rootViewController = self.view
+        let nc = UINavigationController(rootViewController: self.view)
+        routerWindow.rootViewController = nc
         routerWindow.makeKeyAndVisible()
-        return self.view
+        return nc
     }
 
     func updatePonso(ponso: NNListModel) {
@@ -81,7 +82,7 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
             return
         }
 
-        openOutput(item:item)
+        openOutput(listItem: item)
     }
 
     func openAddDetail() {

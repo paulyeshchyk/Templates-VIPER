@@ -1,0 +1,54 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_info.name }}ModuleProtocol {
+
+    var rootWindow:UIWindow
+    var presenter: {{ prefix }}{{ module_info.name }}PresenterProtocol
+    var emptyDetailView: {{ prefix }}{{ module_info.name }}ViewProtocol
+
+    var view: UIViewController {
+
+        get {
+
+            return self.emptyDetailView.viewController
+        }
+    }
+
+    required init(window:UIWindow) {
+
+        rootWindow = window
+
+        emptyDetailView = {{ prefix }}{{ module_info.name }}ViewController(nibName: "{{ prefix }}{{ module_info.name }}ViewController", bundle: NSBundle.mainBundle())
+        let interactor =  {{ prefix }}{{ module_info.name }}Interactor()
+        presenter = {{ prefix }}{{ module_info.name }}Presenter(view: emptyDetailView, interactor: interactor)
+
+        super.init()
+    }
+
+    func makeRoot()->UIViewController {
+
+        rootWindow.rootViewController = self.view
+        rootWindow.makeKeyAndVisible()
+        return self.view
+    }
+
+    func pushFrom(navigationController:UINavigationController) {
+
+        navigationController.pushViewController(self.view, animated: true)
+    }
+
+    func popFrom(navigationController:UINavigationController) {
+
+        navigationController.popViewControllerAnimated(true)
+    }
+
+}

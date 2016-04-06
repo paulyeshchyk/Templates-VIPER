@@ -2,7 +2,7 @@
 //  NNSplitPresenter.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -11,10 +11,17 @@ import UIKit
 
 class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
 
-    var splitView:NNSplitViewProtocol
-    var interactor:NNSplitInteractorProtocol?
-    var selectedItem:NNSplitModel?
+    var splitView: NNSplitViewProtocol
+    var interactor: NNSplitInteractorProtocol?
+    var selectedItem: NNSplitModel? {
 
+        didSet {
+
+            self.interactor?.selectedItem = self.selectedItem
+            
+            self.rebuildPresenters()
+        }
+    }
 
     var masterPresenter:PresenterProtocol? {
 
@@ -24,7 +31,7 @@ class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
         }
     }
 
-    var detailPresenter:NNDetailPresenterProtocol? {
+    var detailPresenter:PresenterProtocol? {
 
         didSet {
 

@@ -29,40 +29,43 @@ class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.n
     var splitModule:{{ prefix }}SplitModuleProtocol
     let listModule:{{ prefix }}ListModuleProtocol
     var detailModule:{{ prefix }}DetailModuleProtocol
-    //let emptyDetailModule:{{ prefix }}EmptyDetailModuleProtocol
+    let emptyDetailModule:{{ prefix }}EmptyDetailModuleProtocol
 
     required init(window:UIWindow) {
 
         splitModule = {{ prefix }}SplitModule(window: window)
         listModule = {{ prefix }}ListModule(window: window)
         detailModule = {{ prefix }}DetailModule(window: window)
-        //emptyDetailModule = {{ prefix }}EmptyDetailModule(window: window)
+        emptyDetailModule = {{ prefix }}EmptyDetailModule(window: window)
 
         rootWindow = window
         super.init()
 
         splitModule.masterPresenter = listModule.presenter
         splitModule.detailPresenter = detailModule.presenter
-        //splitModule.emptyDetailPresenter = emptyDetailModule.presenter
+        splitModule.emptyDetailPresenter = emptyDetailModule.presenter
 
-        //listModule.openOutput = {(item) in
-        //
-        //
-        //self.detailModule.detail = item
-        //self.splitModule.presenter.selectedItem = item
-        //}
+        listModule.openOutput = {(listItem) in
 
-        //listModule.addOutput = {() in
-        //
-        //}
+            let detailItem = NNDetailModel(nameValue: listItem.text)
+            let splitItem = NNSplitModel(aIdent: listItem.ident, aText: listItem.text)
 
-        //detailModule.saveOutput = {(ponso) in
+            self.detailModule.detail = detailItem
+            self.splitModule.presenter.selectedItem = splitItem
+        }
 
-        //  self.listModule.refreshPonso(ponso)
-        //}
+        listModule.addOutput = {() in
 
-        //detailModule.cancelOutput = {() in
-        //
-        //}
+        }
+
+        detailModule.saveOutput = {(detailItem) in
+
+            let listItem = NNListModel(aIdent: detailItem.name, aText: detailItem.name)
+            self.listModule.refreshPonso(listItem)
+        }
+
+        detailModule.cancelOutput = {() in
+
+        }
     }
 }

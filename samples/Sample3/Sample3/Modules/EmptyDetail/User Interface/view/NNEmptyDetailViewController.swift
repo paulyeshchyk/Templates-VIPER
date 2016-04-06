@@ -2,14 +2,14 @@
 //  NNEmptyDetailViewController.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class NNEmptyDetailViewController: NSObject, NNEmptyDetailViewProtocol {
+class NNEmptyDetailViewController: UIViewController, NNEmptyDetailViewProtocol {
 
     var viewController: UIViewController {
 

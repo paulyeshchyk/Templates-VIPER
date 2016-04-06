@@ -12,21 +12,31 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var launcher:NNIPadLauncher?
+    var launcher:LauncherProtocol?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
+
         let wnd = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-        let launcher = NNIPadLauncher(window: wnd)
-        self.launcher = launcher
-        
+        switch (UIDevice.currentDevice().userInterfaceIdiom) {
+        case .Phone:
+            
+            let launcher = NNIPhoneLauncher(window: wnd)
+            self.launcher = launcher
+            launcher.launch()
+            break;
+         case .Pad:
+            
+            let launcher = NNIPadLauncher(window: wnd)
+            self.launcher = launcher
+            launcher.launch()
+            break;
+         default:
+            break;
+         }
 
         self.window = wnd
 
-        launcher.launch()
-        
         return true
     }
 

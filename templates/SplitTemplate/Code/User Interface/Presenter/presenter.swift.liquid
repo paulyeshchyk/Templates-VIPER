@@ -11,10 +11,16 @@ import UIKit
 
 class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
-    var splitView:{{ prefix }}{{ module_info.name }}ViewProtocol
-    var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol?
-    var selectedItem:{{ prefix }}{{ module_info.name }}Model?
+    var splitView: {{ prefix }}{{ module_info.name }}ViewProtocol
+    var interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol?
+    var selectedItem: {{ prefix }}{{ module_info.name }}Model? {
 
+        didSet {
+
+            self.interactor?.selectedItem = self.selectedItem
+            self.rebuildPresenters()
+        }
+    }
 
     var masterPresenter:PresenterProtocol? {
 

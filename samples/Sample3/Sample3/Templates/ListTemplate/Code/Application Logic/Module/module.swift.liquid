@@ -58,9 +58,10 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
 
     func makeRoot() -> UIViewController{
 
-        routerWindow.rootViewController = self.view
+        let nc = UINavigationController(rootViewController: self.view)
+        routerWindow.rootViewController = nc
         routerWindow.makeKeyAndVisible()
-        return self.view
+        return nc
     }
 
     func updatePonso(ponso: {{ prefix }}{{ module_info.name }}Model) {
@@ -81,7 +82,7 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
             return
         }
 
-        openOutput(item:item)
+        openOutput(listItem: item)
     }
 
     func openAddDetail() {

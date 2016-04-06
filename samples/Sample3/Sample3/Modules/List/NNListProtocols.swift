@@ -2,7 +2,7 @@
 //  NNListProtocols.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 typealias NNListModuleAddDetailOutput = ()->()
-typealias NNListModuleOpenDetailOutput = (item:NNListModel)->()
+typealias NNListModuleOpenDetailOutput = (listItem:NNListModel)->()
 protocol NNListModuleProtocol:ModuleProtocol {
 
     var presenter:NNListPresenterProtocol {get set}

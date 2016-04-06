@@ -32,6 +32,16 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
         }
     }
 
+    var detail: {{ prefix }}{{ module_info.name }}Model? {
+
+        didSet {
+
+            rootView.nameValue = detail?.name
+            //rootView.identValue = detail?.ident
+            rootView.redrawData()
+        }
+    }
+
     required init(view: {{ prefix }}{{ module_info.name }}ViewProtocol, interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol) {
 
         rootView = view
@@ -50,13 +60,13 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
     
     func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model) {
 
-		self.rootView.sampleProperty = detail.name
+		self.rootView.nameValue = detail.name
         self.rootView.sampleError = nil
     }
     
     func presentError(error: NSError) {
         
-        self.rootView.sampleProperty = nil
+        self.rootView.nameValue = nil
         self.rootView.sampleError = error.localizedDescription
     }
     

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 typealias {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput = ()->()
-typealias {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput = (item:{{ prefix }}{{ module_info.name }}Model)->()
+typealias {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput = (listItem:{{ prefix }}{{ module_info.name }}Model)->()
 protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
 
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol {get set}

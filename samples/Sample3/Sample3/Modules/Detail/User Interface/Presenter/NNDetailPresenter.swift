@@ -2,7 +2,7 @@
 //  NNDetailPresenter.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -32,6 +32,16 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
         }
     }
 
+    var detail: NNDetailModel? {
+
+        didSet {
+
+            rootView.nameValue = detail?.name
+            //rootView.identValue = detail?.ident
+            rootView.redrawData()
+        }
+    }
+
     required init(view: NNDetailViewProtocol, interactor: NNDetailInteractorProtocol) {
 
         rootView = view
@@ -50,13 +60,13 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
     
     func presentDetail(detail:NNDetailModel) {
 
-		self.rootView.sampleProperty = detail.name
+		self.rootView.nameValue = detail.name
         self.rootView.sampleError = nil
     }
     
     func presentError(error: NSError) {
         
-        self.rootView.sampleProperty = nil
+        self.rootView.nameValue = nil
         self.rootView.sampleError = error.localizedDescription
     }
     

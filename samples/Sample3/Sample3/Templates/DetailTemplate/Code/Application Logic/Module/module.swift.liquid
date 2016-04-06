@@ -32,6 +32,17 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
             return self.rootView.viewController
         }
     }
+    var saveOutput: {{ prefix }}{{ module_info.name }}ModuleSaveOutput?
+    var cancelOutput: {{ prefix }}{{ module_info.name }}ModuleCancelAddDetailOutput?
+
+
+    var detail: {{ prefix }}{{ module_info.name }}Model? {
+
+        didSet {
+
+            self.presenter.detail = self.detail
+        }
+    }
 
     required init(window:UIWindow) {
         
@@ -45,6 +56,22 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
         super.init()
 
         presenter.output = self
+    }
 
+    func pushFrom(navigationController:UINavigationController) {
+
+        navigationController.pushViewController(self.view, animated: true)
+    }
+
+    func popFrom(navigationController: UINavigationController) {
+
+        navigationController.popViewControllerAnimated(true)
+    }
+
+    func makeRoot() -> UIViewController{
+
+        rootWindow.rootViewController = self.view
+        rootWindow.makeKeyAndVisible()
+        return self.view
     }
 }

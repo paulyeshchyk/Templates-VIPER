@@ -2,7 +2,7 @@
 //  NNIPadLauncherModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -29,40 +29,43 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
     var splitModule:NNSplitModuleProtocol
     let listModule:NNListModuleProtocol
     var detailModule:NNDetailModuleProtocol
-    //let emptyDetailModule:NNEmptyDetailModuleProtocol
+    let emptyDetailModule:NNEmptyDetailModuleProtocol
 
     required init(window:UIWindow) {
 
         splitModule = NNSplitModule(window: window)
         listModule = NNListModule(window: window)
         detailModule = NNDetailModule(window: window)
-        //emptyDetailModule = NNEmptyDetailModule(window: window)
+        emptyDetailModule = NNEmptyDetailModule(window: window)
 
         rootWindow = window
         super.init()
 
         splitModule.masterPresenter = listModule.presenter
         splitModule.detailPresenter = detailModule.presenter
-        //splitModule.emptyDetailPresenter = emptyDetailModule.presenter
+        splitModule.emptyDetailPresenter = emptyDetailModule.presenter
 
-        //listModule.openOutput = {(item) in
-        //
-        //
-        //self.detailModule.detail = item
-        //self.splitModule.presenter.selectedItem = item
-        //}
+        listModule.openOutput = {(listItem) in
 
-        //listModule.addOutput = {() in
-        //
-        //}
+            let detailItem = NNDetailModel(nameValue: listItem.text)
+            let splitItem = NNSplitModel(aIdent: listItem.ident, aText: listItem.text)
 
-        //detailModule.saveOutput = {(ponso) in
+            self.detailModule.detail = detailItem
+            self.splitModule.presenter.selectedItem = splitItem
+        }
 
-        //  self.listModule.refreshPonso(ponso)
-        //}
+        listModule.addOutput = {() in
 
-        //detailModule.cancelOutput = {() in
-        //
-        //}
+        }
+
+        detailModule.saveOutput = {(detailItem) in
+
+            let listItem = NNListModel(aIdent: detailItem.name, aText: detailItem.name)
+            self.listModule.refreshPonso(listItem)
+        }
+
+        detailModule.cancelOutput = {() in
+
+        }
     }
 }

@@ -2,7 +2,7 @@
 //  NNDetailViewController.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -10,9 +10,10 @@ import UIKit
 
 class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFieldDelegate  {
 
-    @IBOutlet var sampleNameTextField:UITextField?
-    @IBOutlet var errorLabel:UILabel?
-    @IBOutlet var button:UIButton?
+    @IBOutlet var nameTextField: UITextField?
+    @IBOutlet var identTextField: UITextField?
+    @IBOutlet var errorLabel: UILabel?
+    @IBOutlet var button: UIButton?
 
 	//MARK: - NSObject
     deinit {
@@ -53,13 +54,13 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
         }
     }
     
-    var sampleProperty:String? {
+    var nameValue:String? {
 
     	didSet {
 
-			self.sampleNameTextField?.text = self.sampleProperty
+			self.nameTextField?.text = self.nameValue
             
-            guard let txt = self.sampleProperty where txt.characters.count > 0 else {
+            guard let txt = self.nameValue where txt.characters.count > 0 else {
                 
                 self.button?.enabled = false
                 return
@@ -73,6 +74,15 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
         didSet {
             
             self.errorLabel?.text = self.sampleError
+        }
+    }
+
+    func redrawData() {
+
+        if (self.isViewLoaded()) {
+
+            //self.sampleNameTextField?.text = self.nameValue
+            //self.identTextField?.text = self.identValue
         }
     }
 

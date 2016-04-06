@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NNDetailViewController" customModule="Sample3" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NNDetailViewController" customModuleProvider="target">
             <connections>
                 <outlet property="identTextField" destination="EC8-kF-ce7" id="hgL-Lf-IeV"/>
                 <outlet property="nameTextField" destination="wOR-d3-DjF" id="si7-OL-fi3"/>

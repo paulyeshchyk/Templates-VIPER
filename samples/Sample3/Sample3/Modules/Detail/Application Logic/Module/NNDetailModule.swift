@@ -2,7 +2,7 @@
 //  NNDetailModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 05/04/2016.
+//  Created by Pavel Yeshchyk on 06/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -32,6 +32,17 @@ class NNDetailModule: NSObject, NNDetailModuleProtocol, NNDetailPresenterOutputP
             return self.rootView.viewController
         }
     }
+    var saveOutput: NNDetailModuleSaveOutput?
+    var cancelOutput: NNDetailModuleCancelAddDetailOutput?
+
+
+    var detail: NNDetailModel? {
+
+        didSet {
+
+            self.presenter.detail = self.detail
+        }
+    }
 
     required init(window:UIWindow) {
         
@@ -45,6 +56,22 @@ class NNDetailModule: NSObject, NNDetailModuleProtocol, NNDetailPresenterOutputP
         super.init()
 
         presenter.output = self
+    }
 
+    func pushFrom(navigationController:UINavigationController) {
+
+        navigationController.pushViewController(self.view, animated: true)
+    }
+
+    func popFrom(navigationController: UINavigationController) {
+
+        navigationController.popViewControllerAnimated(true)
+    }
+
+    func makeRoot() -> UIViewController{
+
+        rootWindow.rootViewController = self.view
+        rootWindow.makeKeyAndVisible()
+        return self.view
     }
 }
