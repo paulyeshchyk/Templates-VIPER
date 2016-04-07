@@ -36,8 +36,6 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
         didSet {
 
-            //rootView.nameValue = detail?.name
-            //rootView.identValue = detail?.ident
             self.rootInteractor.fetchData(self.detail)
         }
     }
@@ -55,9 +53,21 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
     func viewHasBeenLoaded() {
         
+        let saveItem = UIBarButtonItem(barButtonSystemItem:.Save, target: self, action: #selector(NNDetailPresenter.saveItem(_:)))
+        self.rootView.viewController.navigationItem.rightBarButtonItems = [saveItem]
+
         self.rootInteractor.fetchData(self.detail)
     }
     
+    func nameChanged(value: String) {
+
+        self.rootInteractor.changeName(value, forDetail: self.detail)
+    }
+
+    func saveItem(sender:AnyObject?) {
+
+    }
+
     func presentDetail(detail:NNDetailModel) {
 
 		self.rootView.nameValue = detail.name

@@ -16,6 +16,7 @@ protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
     var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
     func fetchData(forDetail:NNDetailModel?)
+    func changeName(name:String, forDetail:NNDetailModel?)
 }
 
 typealias {{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock = (result:{{ prefix }}{{ module_info.name }}Model?, error:NSError?)->()
@@ -55,6 +56,10 @@ protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol, 
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
     func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model)
     func presentError(error:NSError)
+
+    func nameChanged(value:String)
+    func saveItem(sender:AnyObject?)
+
 }
 
 

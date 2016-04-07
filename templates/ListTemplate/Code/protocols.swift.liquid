@@ -13,18 +13,18 @@ typealias {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput = ()->()
 typealias {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput = (listItem:{{ prefix }}{{ module_info.name }}Model)->()
 protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
 
-    var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol {get set}
-    var listView:{{ prefix }}{{ module_info.name }}ViewProtocol {get set}
-    var addOutput:{{ prefix }}{{ module_info.name }}ModuleAddDetailOutput? { get set}
-    var openOutput:{{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput? { get set}
+    var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol { get set }
+    var listView:{{ prefix }}{{ module_info.name }}ViewProtocol { get set }
+    var addOutput:{{ prefix }}{{ module_info.name }}ModuleAddDetailOutput? { get set }
+    var openOutput:{{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput? { get set }
     func updatePonso(ponso:{{ prefix }}{{ module_info.name }}Model)
     func refreshPonso(ponso:{{ prefix }}{{ module_info.name }}Model)
 }
 
 protocol {{ prefix }}{{ module_info.name }}ViewProtocol:ViewProtocol {
 
-    var input:{{ prefix }}{{ module_info.name }}InteractorProtocol? {get set}
-    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? {get set}
+    var input:{{ prefix }}{{ module_info.name }}InteractorProtocol? { get set }
+    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
     func reloadTableview()
     func reloadItemAtIndex(index:Int)
 }
@@ -36,7 +36,7 @@ protocol {{ prefix }}{{ module_info.name }}DataSourceListenerProtocol {
 
 protocol {{ prefix }}{{ module_info.name }}DatasourceProtocol {
 
-    var listener:{{ prefix }}{{ module_info.name }}DataSourceListenerProtocol? {get set}
+    var listener:{{ prefix }}{{ module_info.name }}DataSourceListenerProtocol? { get set }
     func numberOfItems()->Int
     func itemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model
     func indexOfItem(item:{{ prefix }}{{ module_info.name }}Model)->Int
@@ -51,14 +51,14 @@ protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
     func refetchData()
 
     var selectedItem:String? { get set }
-    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set}
+    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
     func listItemsCount()->Int
     func listItemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model
 }
 
 protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol {
 
-    var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? {get set}
+    var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? { get set }
 
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
 

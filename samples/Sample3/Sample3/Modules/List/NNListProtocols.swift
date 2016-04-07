@@ -13,18 +13,18 @@ typealias NNListModuleAddDetailOutput = ()->()
 typealias NNListModuleOpenDetailOutput = (listItem:NNListModel)->()
 protocol NNListModuleProtocol:ModuleProtocol {
 
-    var presenter:NNListPresenterProtocol {get set}
-    var listView:NNListViewProtocol {get set}
-    var addOutput:NNListModuleAddDetailOutput? { get set}
-    var openOutput:NNListModuleOpenDetailOutput? { get set}
+    var presenter:NNListPresenterProtocol { get set }
+    var listView:NNListViewProtocol { get set }
+    var addOutput:NNListModuleAddDetailOutput? { get set }
+    var openOutput:NNListModuleOpenDetailOutput? { get set }
     func updatePonso(ponso:NNListModel)
     func refreshPonso(ponso:NNListModel)
 }
 
 protocol NNListViewProtocol:ViewProtocol {
 
-    var input:NNListInteractorProtocol? {get set}
-    var output:NNListPresenterProtocol? {get set}
+    var input:NNListInteractorProtocol? { get set }
+    var output:NNListPresenterProtocol? { get set }
     func reloadTableview()
     func reloadItemAtIndex(index:Int)
 }
@@ -36,7 +36,7 @@ protocol NNListDataSourceListenerProtocol {
 
 protocol NNListDatasourceProtocol {
 
-    var listener:NNListDataSourceListenerProtocol? {get set}
+    var listener:NNListDataSourceListenerProtocol? { get set }
     func numberOfItems()->Int
     func itemAtIndex(index:Int)->NNListModel
     func indexOfItem(item:NNListModel)->Int
@@ -51,14 +51,14 @@ protocol NNListInteractorProtocol {
     func refetchData()
 
     var selectedItem:String? { get set }
-    var output:NNListPresenterProtocol? { get set}
+    var output:NNListPresenterProtocol? { get set }
     func listItemsCount()->Int
     func listItemAtIndex(index:Int)->NNListModel
 }
 
 protocol NNListPresenterProtocol:PresenterProtocol {
 
-    var output:NNListPresenterOutputProtocol? {get set}
+    var output:NNListPresenterOutputProtocol? { get set }
 
     init(view:NNListViewProtocol, interactor:NNListInteractorProtocol)
 

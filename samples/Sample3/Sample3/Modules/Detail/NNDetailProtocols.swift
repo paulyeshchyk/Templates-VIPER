@@ -16,6 +16,7 @@ protocol NNDetailInteractorProtocol {
 
     var output:NNDetailPresenterProtocol? { get set }
     func fetchData(forDetail:NNDetailModel?)
+    func changeName(name:String, forDetail:NNDetailModel?)
 }
 
 typealias NNDetailManagerResultCompletionBlock = (result:NNDetailModel?, error:NSError?)->()
@@ -55,6 +56,10 @@ protocol NNDetailPresenterProtocol:PresenterProtocol, ViewOutputProtocol {
     init(view:NNDetailViewProtocol, interactor:NNDetailInteractorProtocol)
     func presentDetail(detail:NNDetailModel)
     func presentError(error:NSError)
+
+    func nameChanged(value:String)
+    func saveItem(sender:AnyObject?)
+
 }
 
 

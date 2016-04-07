@@ -25,6 +25,7 @@ class {{ prefix }}{{ module_info.name }}ViewController: UIViewController, {{ pre
         
         super.viewDidLoad()
 
+        self.nameTextField?.addTarget(self, action: #selector(nameChanged(_:)), forControlEvents: .EditingDidEndOnExit)
 
 		//tell presenter about view load completion
 		self.output?.viewHasBeenLoaded()
@@ -39,7 +40,6 @@ class {{ prefix }}{{ module_info.name }}ViewController: UIViewController, {{ pre
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
         return true
     }
 
@@ -75,5 +75,11 @@ class {{ prefix }}{{ module_info.name }}ViewController: UIViewController, {{ pre
             
             self.errorLabel?.text = self.sampleError
         }
+    }
+
+    //MARK: - events
+    func nameChanged(sender:UITextField) {
+
+        self.output?.nameChanged(sender.text ?? "")
     }
 }

@@ -57,4 +57,9 @@ class NNDetailInteractor: NSObject, NNDetailInteractorProtocol {
         self.output?.presentDetail(detail)
     }
 
+    func changeName(name: String, forDetail: NNDetailModel?) {
+
+    }
+
+
 }

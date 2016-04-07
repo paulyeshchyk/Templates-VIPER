@@ -25,6 +25,7 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
         
         super.viewDidLoad()
 
+        self.nameTextField?.addTarget(self, action: #selector(nameChanged(_:)), forControlEvents: .EditingDidEndOnExit)
 
 		//tell presenter about view load completion
 		self.output?.viewHasBeenLoaded()
@@ -39,7 +40,6 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
         return true
     }
 
@@ -75,5 +75,11 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
             
             self.errorLabel?.text = self.sampleError
         }
+    }
+
+    //MARK: - events
+    func nameChanged(sender:UITextField) {
+
+        self.output?.nameChanged(sender.text ?? "")
     }
 }
