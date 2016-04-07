@@ -76,14 +76,4 @@ class NNDetailViewController: UIViewController, NNDetailViewProtocol, UITextFiel
             self.errorLabel?.text = self.sampleError
         }
     }
-
-    func redrawData() {
-
-        if (self.isViewLoaded()) {
-
-            //self.sampleNameTextField?.text = self.nameValue
-            //self.identTextField?.text = self.identValue
-        }
-    }
-
 }

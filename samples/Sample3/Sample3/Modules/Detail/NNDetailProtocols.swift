@@ -30,32 +30,29 @@ protocol NNDetailModuleProtocol:ModuleProtocol {
     var saveOutput: NNDetailModuleSaveOutput? { get set}
     var cancelOutput: NNDetailModuleCancelAddDetailOutput? {get set}
     var detail: NNDetailModel? { get set }
-    var view:UIViewController {get}
+    var view:UIViewController { get }
     var presenter:NNDetailPresenterProtocol { get set}
 }
 
-protocol NNDetailViewProtocol {
+protocol NNDetailViewProtocol:ViewProtocol {
 
     var output:NNDetailPresenterProtocol? { get set }
-    var viewController:UIViewController { get }
-    
+
     var nameValue:String? { get set }
     var sampleError:String? { get set }
 
-    func redrawData()
 }
 
 protocol NNDetailPresenterOutputProtocol {
 
 }
 
-protocol NNDetailPresenterProtocol:PresenterProtocol {
+protocol NNDetailPresenterProtocol:PresenterProtocol, ViewOutputProtocol {
 
     var output:NNDetailPresenterOutputProtocol? { get set }
     var detail: NNDetailModel? { get set }
 
     init(view:NNDetailViewProtocol, interactor:NNDetailInteractorProtocol)
-	func viewHasBeenLoaded()    
     func presentDetail(detail:NNDetailModel)
     func presentError(error:NSError)
 }

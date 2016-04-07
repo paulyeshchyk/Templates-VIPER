@@ -30,32 +30,29 @@ protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
     var saveOutput: {{ prefix }}{{ module_info.name }}ModuleSaveOutput? { get set}
     var cancelOutput: {{ prefix }}{{ module_info.name }}ModuleCancelAddDetailOutput? {get set}
     var detail: {{ prefix }}{{ module_info.name }}Model? { get set }
-    var view:UIViewController {get}
+    var view:UIViewController { get }
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol { get set}
 }
 
-protocol {{ prefix }}{{ module_info.name }}ViewProtocol {
+protocol {{ prefix }}{{ module_info.name }}ViewProtocol:ViewProtocol {
 
     var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
-    var viewController:UIViewController { get }
-    
+
     var nameValue:String? { get set }
     var sampleError:String? { get set }
 
-    func redrawData()
 }
 
 protocol {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
 
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol {
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol, ViewOutputProtocol {
 
     var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? { get set }
     var detail: {{ prefix }}{{ module_info.name }}Model? { get set }
 
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
-	func viewHasBeenLoaded()    
     func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model)
     func presentError(error:NSError)
 }

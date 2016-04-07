@@ -2,7 +2,7 @@
 //  NNSplitModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 06/04/2016.
+//  Created by Pavel Yeshchyk on 07/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -59,6 +59,7 @@ class NNSplitModule: NNSplitModuleProtocol {
 
     }
 
+
     func pushFrom(navigationController:UINavigationController) {
 
         navigationController.pushViewController(self.view, animated: true)
@@ -76,9 +77,4 @@ class NNSplitModule: NNSplitModuleProtocol {
         return self.view
     }
 
-    func setSelectedItem(item:NNSplitModel) {
-        
-        self.presenter.selectedItem = item
-    }
-    
 }

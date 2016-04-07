@@ -2,7 +2,7 @@
 //  NNSplitProtocols.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 06/04/2016.
+//  Created by Pavel Yeshchyk on 07/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -19,9 +19,6 @@ protocol NNSplitModuleProtocol:ModuleProtocol {
     var masterPresenter:PresenterProtocol? {get set}
     var detailPresenter:PresenterProtocol? {get set}
     var emptyDetailPresenter:PresenterProtocol? {get set}
-    
-    func setSelectedItem(item:NNSplitModel)
-    
 }
 
 protocol NNSplitViewProtocol:ViewProtocol {
