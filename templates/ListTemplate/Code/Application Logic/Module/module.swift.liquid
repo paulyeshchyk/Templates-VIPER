@@ -27,7 +27,7 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
         }
     }
 
-    required init(window: UIWindow, datasource: {{ prefix }}{{ module_info.name }}DataManager) {
+    required init(window: UIWindow, datasource: {{ prefix }}{{ module_info.name }}DatasourceProtocol) {
 
         rootWindow = window
 

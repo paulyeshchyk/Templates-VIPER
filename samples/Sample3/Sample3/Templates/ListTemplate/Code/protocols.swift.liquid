@@ -17,7 +17,7 @@ protocol {{ prefix }}{{ module_info.name }}ModuleProtocol: ModuleProtocol {
     var listView:{{ prefix }}{{ module_info.name }}ViewProtocol { get set }
     var addOutput:{{ prefix }}{{ module_info.name }}ModuleAddDetailOutput? { get set }
     var openOutput:{{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput? { get set }
-    init(window:UIWindow, datasource: {{ prefix }}{{ module_info.name }}DataManager)
+    init(window:UIWindow, datasource: {{ prefix }}{{ module_info.name }}DatasourceProtocol)
     func updatePonso(ponso:{{ prefix }}{{ module_info.name }}Model)
     func refreshPonso(ponso:{{ prefix }}{{ module_info.name }}Model)
 }

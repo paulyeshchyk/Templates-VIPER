@@ -27,7 +27,7 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
         }
     }
 
-    required init(window: UIWindow, datasource: NNListDataManager) {
+    required init(window: UIWindow, datasource: NNListDatasourceProtocol) {
 
         rootWindow = window
 

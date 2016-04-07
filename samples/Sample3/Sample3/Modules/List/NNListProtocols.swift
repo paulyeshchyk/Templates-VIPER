@@ -17,7 +17,7 @@ protocol NNListModuleProtocol: ModuleProtocol {
     var listView:NNListViewProtocol { get set }
     var addOutput:NNListModuleAddDetailOutput? { get set }
     var openOutput:NNListModuleOpenDetailOutput? { get set }
-    init(window:UIWindow, datasource: NNListDataManager)
+    init(window:UIWindow, datasource: NNListDatasourceProtocol)
     func updatePonso(ponso:NNListModel)
     func refreshPonso(ponso:NNListModel)
 }
