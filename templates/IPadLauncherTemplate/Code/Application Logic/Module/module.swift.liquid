@@ -17,8 +17,8 @@ class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.n
 
     }
 
-    var rootWindow:UIWindow
-    var root:UIViewController?
+    var rootWindow: UIWindow
+    var root: UIViewController?
 
     //MARK: -  {{ prefix }}{{ module_info.name }}ModuleProtocol
     func launch() {
@@ -33,8 +33,10 @@ class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.n
 
     required init(window:UIWindow) {
 
+        let dm = {{ prefix }}ListDataManager()
+
         splitModule = {{ prefix }}SplitModule(window: window)
-        listModule = {{ prefix }}ListModule(window: window)
+        listModule = {{ prefix }}ListModule(window: window, datasource:dm)
         detailModule = {{ prefix }}DetailModule(window: window)
         emptyDetailModule = {{ prefix }}EmptyDetailModule(window: window)
 

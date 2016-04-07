@@ -19,12 +19,12 @@ class NNListDataManager: NSObject, NNListDatasourceProtocol {
         NNListModel(aIdent:"DEF",aText: "DEF")]
 
 
-    func numberOfItems()->Int {
+    func numberOfItems() -> Int {
 
         return items.count
     }
 
-    func itemAtIndex(index:Int)->NNListModel {
+    func itemAtIndex(index:Int) -> AnyObject{
 
         return items[index]
     }
@@ -47,7 +47,7 @@ class NNListDataManager: NSObject, NNListDatasourceProtocol {
 
     }
 
-    func indexOfItem(item: NNListModel) -> Int {
+    func indexOfItem(item: AnyObject) -> Int {
 
         var result:Int = -1
 

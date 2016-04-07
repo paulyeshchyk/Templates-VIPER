@@ -34,14 +34,19 @@ class NNListInteractor: NSObject, NNListInteractorProtocol, NNListDataSourceList
         output?.redrawData()
     }
 
-    func listItemsCount()->Int {
+    func listItemsCount() -> Int {
 
         return self.datasource.numberOfItems()
     }
 
     func listItemAtIndex(index:Int)->NNListModel {
 
-        return self.datasource.itemAtIndex(index)
+        guard let result = self.datasource.itemAtIndex(index) as? NNListModel else {
+
+            return NNListModel(aIdent: "", aText: "")
+        }
+
+        return result
     }
 
     func hasUpdatedData() {

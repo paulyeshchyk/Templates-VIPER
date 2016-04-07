@@ -19,12 +19,12 @@ class {{ prefix }}{{ module_info.name }}DataManager: NSObject, {{ prefix }}{{ mo
         {{ prefix }}{{ module_info.name }}Model(aIdent:"DEF",aText: "DEF")]
 
 
-    func numberOfItems()->Int {
+    func numberOfItems() -> Int {
 
         return items.count
     }
 
-    func itemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model {
+    func itemAtIndex(index:Int) -> AnyObject{
 
         return items[index]
     }
@@ -47,7 +47,7 @@ class {{ prefix }}{{ module_info.name }}DataManager: NSObject, {{ prefix }}{{ mo
 
     }
 
-    func indexOfItem(item: {{ prefix }}{{ module_info.name }}Model) -> Int {
+    func indexOfItem(item: AnyObject) -> Int {
 
         var result:Int = -1
 

@@ -18,7 +18,7 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
     var addOutput: {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput?
     var openOutput: {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput?
 
-    var routerWindow:UIWindow
+    var rootWindow: UIWindow
     var view: UIViewController {
 
         get {
@@ -27,11 +27,11 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
         }
     }
 
-    required init(window: UIWindow) {
+    required init(window: UIWindow, datasource: {{ prefix }}{{ module_info.name }}DataManager) {
 
-        routerWindow = window
+        rootWindow = window
 
-        datamanager = {{ prefix }}{{ module_info.name }}DataManager()
+        datamanager = datasource
         listInteractor = {{ prefix }}{{ module_info.name }}Interactor(datasource:datamanager)
 
         listView = {{ prefix }}{{ module_info.name }}ViewController(nibName:"{{ prefix }}{{ module_info.name }}ViewController", bundle: NSBundle.mainBundle())
@@ -59,8 +59,8 @@ class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_
     func makeRoot() -> UIViewController{
 
         let nc = UINavigationController(rootViewController: self.view)
-        routerWindow.rootViewController = nc
-        routerWindow.makeKeyAndVisible()
+        rootWindow.rootViewController = nc
+        rootWindow.makeKeyAndVisible()
         return nc
     }
 

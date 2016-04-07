@@ -18,7 +18,9 @@ class NNIPhoneLauncher: NSObject, NNIPhoneLauncherProtocol {
 
     required init(window:UIWindow) {
 
-        listModule = NNListModule(window: window)
+        let dm = NNListDataManager()
+
+        listModule = NNListModule(window: window, datasource:dm)
         detailModule = NNDetailModule(window: window)
         rootWindow = window
         super.init()

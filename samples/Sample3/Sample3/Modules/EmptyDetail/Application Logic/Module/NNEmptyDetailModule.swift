@@ -11,7 +11,7 @@ import UIKit
 
 class NNEmptyDetailModule: NSObject, NNEmptyDetailModuleProtocol {
 
-    var rootWindow:UIWindow
+    var rootWindow: UIWindow
     var presenter: NNEmptyDetailPresenterProtocol
     var emptyDetailView: NNEmptyDetailViewProtocol
 

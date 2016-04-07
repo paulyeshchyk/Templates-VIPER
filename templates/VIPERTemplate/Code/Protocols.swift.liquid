@@ -10,12 +10,13 @@ import UIKit
 
 protocol ModuleProtocol {
 
-    init(window:UIWindow)
     func makeRoot()->UIViewController
     func pushFrom(navigationController:UINavigationController)
     func popFrom(navigationController:UINavigationController)
 
-    var view:UIViewController {get}
+    var view: UIViewController { get }
+    var rootWindow: UIWindow { get }
+
 }
 
 protocol ViewProtocol {
@@ -40,4 +41,12 @@ protocol PresenterProtocol {
 protocol LauncherProtocol {
 
     func launch()
+}
+
+
+protocol ListDatasourceProtocol {
+
+    func numberOfItems() -> Int
+    func itemAtIndex(index: Int) -> AnyObject
+    func indexOfItem(item: AnyObject) -> Int
 }

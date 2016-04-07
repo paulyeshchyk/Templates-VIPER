@@ -17,8 +17,8 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
 
     }
 
-    var rootWindow:UIWindow
-    var root:UIViewController?
+    var rootWindow: UIWindow
+    var root: UIViewController?
 
     //MARK: -  NNIPadLauncherModuleProtocol
     func launch() {
@@ -33,8 +33,10 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
 
     required init(window:UIWindow) {
 
+        let dm = NNListDataManager()
+
         splitModule = NNSplitModule(window: window)
-        listModule = NNListModule(window: window)
+        listModule = NNListModule(window: window, datasource:dm)
         detailModule = NNDetailModule(window: window)
         emptyDetailModule = NNEmptyDetailModule(window: window)
 

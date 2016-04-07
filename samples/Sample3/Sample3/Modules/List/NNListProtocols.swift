@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-typealias NNListModuleAddDetailOutput = ()->()
-typealias NNListModuleOpenDetailOutput = (listItem:NNListModel)->()
-protocol NNListModuleProtocol:ModuleProtocol {
+typealias NNListModuleAddDetailOutput = () -> ()
+typealias NNListModuleOpenDetailOutput = (listItem: NNListModel)->()
+protocol NNListModuleProtocol: ModuleProtocol {
 
     var presenter:NNListPresenterProtocol { get set }
     var listView:NNListViewProtocol { get set }
     var addOutput:NNListModuleAddDetailOutput? { get set }
     var openOutput:NNListModuleOpenDetailOutput? { get set }
+    init(window:UIWindow, datasource: NNListDataManager)
     func updatePonso(ponso:NNListModel)
     func refreshPonso(ponso:NNListModel)
 }
@@ -34,12 +35,9 @@ protocol NNListDataSourceListenerProtocol {
     func hasUpdatedData()
 }
 
-protocol NNListDatasourceProtocol {
+protocol NNListDatasourceProtocol: ListDatasourceProtocol {
 
     var listener:NNListDataSourceListenerProtocol? { get set }
-    func numberOfItems()->Int
-    func itemAtIndex(index:Int)->NNListModel
-    func indexOfItem(item:NNListModel)->Int
     func updatePonso(ponso:NNListModel)
     func addPonso(ponso:NNListModel)
 }

@@ -34,14 +34,19 @@ class {{ prefix }}{{ module_info.name }}Interactor: NSObject, {{ prefix }}{{ mod
         output?.redrawData()
     }
 
-    func listItemsCount()->Int {
+    func listItemsCount() -> Int {
 
         return self.datasource.numberOfItems()
     }
 
     func listItemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model {
 
-        return self.datasource.itemAtIndex(index)
+        guard let result = self.datasource.itemAtIndex(index) as? NNListModel else {
+
+            return NNListModel(aIdent: "", aText: "")
+        }
+
+        return result
     }
 
     func hasUpdatedData() {

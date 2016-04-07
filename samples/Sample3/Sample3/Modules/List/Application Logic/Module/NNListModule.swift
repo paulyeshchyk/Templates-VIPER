@@ -18,7 +18,7 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
     var addOutput: NNListModuleAddDetailOutput?
     var openOutput: NNListModuleOpenDetailOutput?
 
-    var routerWindow:UIWindow
+    var rootWindow: UIWindow
     var view: UIViewController {
 
         get {
@@ -27,11 +27,11 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
         }
     }
 
-    required init(window: UIWindow) {
+    required init(window: UIWindow, datasource: NNListDataManager) {
 
-        routerWindow = window
+        rootWindow = window
 
-        datamanager = NNListDataManager()
+        datamanager = datasource
         listInteractor = NNListInteractor(datasource:datamanager)
 
         listView = NNListViewController(nibName:"NNListViewController", bundle: NSBundle.mainBundle())
@@ -59,8 +59,8 @@ class NNListModule: NSObject, NNListModuleProtocol, NNListPresenterOutputProtoco
     func makeRoot() -> UIViewController{
 
         let nc = UINavigationController(rootViewController: self.view)
-        routerWindow.rootViewController = nc
-        routerWindow.makeKeyAndVisible()
+        rootWindow.rootViewController = nc
+        rootWindow.makeKeyAndVisible()
         return nc
     }
 

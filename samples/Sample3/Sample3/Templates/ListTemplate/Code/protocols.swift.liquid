@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-typealias {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput = ()->()
-typealias {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput = (listItem:{{ prefix }}{{ module_info.name }}Model)->()
-protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
+typealias {{ prefix }}{{ module_info.name }}ModuleAddDetailOutput = () -> ()
+typealias {{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput = (listItem: {{ prefix }}{{ module_info.name }}Model)->()
+protocol {{ prefix }}{{ module_info.name }}ModuleProtocol: ModuleProtocol {
 
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol { get set }
     var listView:{{ prefix }}{{ module_info.name }}ViewProtocol { get set }
     var addOutput:{{ prefix }}{{ module_info.name }}ModuleAddDetailOutput? { get set }
     var openOutput:{{ prefix }}{{ module_info.name }}ModuleOpenDetailOutput? { get set }
+    init(window:UIWindow, datasource: {{ prefix }}{{ module_info.name }}DataManager)
     func updatePonso(ponso:{{ prefix }}{{ module_info.name }}Model)
     func refreshPonso(ponso:{{ prefix }}{{ module_info.name }}Model)
 }
@@ -34,12 +35,9 @@ protocol {{ prefix }}{{ module_info.name }}DataSourceListenerProtocol {
     func hasUpdatedData()
 }
 
-protocol {{ prefix }}{{ module_info.name }}DatasourceProtocol {
+protocol {{ prefix }}{{ module_info.name }}DatasourceProtocol: ListDatasourceProtocol {
 
     var listener:{{ prefix }}{{ module_info.name }}DataSourceListenerProtocol? { get set }
-    func numberOfItems()->Int
-    func itemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model
-    func indexOfItem(item:{{ prefix }}{{ module_info.name }}Model)->Int
     func updatePonso(ponso:{{ prefix }}{{ module_info.name }}Model)
     func addPonso(ponso:{{ prefix }}{{ module_info.name }}Model)
 }
