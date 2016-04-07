@@ -10,12 +10,10 @@ import Foundation
 
 class {{ prefix }}{{ module_info.name }}Interactor: NSObject, {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
-    var datamanager:{{ prefix }}{{ module_info.name }}ManagerProtocol
-    
 	//MARK: - NSObject
     override init() {
         
-        datamanager = {{ prefix }}{{ module_info.name }}Manager()
+        //datamanager = {{ prefix }}{{ module_info.name }}Manager()
 
         super.init()
     }
@@ -27,29 +25,36 @@ class {{ prefix }}{{ module_info.name }}Interactor: NSObject, {{ prefix }}{{ mod
 	//MARK: - {{ prefix }}{{ module_info.name }}InteractorProtocol
     var output:{{ prefix }}{{ module_info.name }}PresenterProtocol?
 
-    func fetchData() {
+    func fetchData(forDetail:NNDetailModel?) {
 		
 		// ask datamanager for new data
 		//...
 		//call output's dataHasBeenFetched() when done
 
-        let predicate = NSPredicate(format: "name == %@", argumentArray: ["Test2"])
-        datamanager.findItem(predicate) { (result, error) in
-            
-            guard let detail = result else {
-                
-                guard let err = error  else {
-                    
-                    return
-                }
-                
-                self.output?.presentError(err)
-                
-                return
-            }
-            
-            self.output?.presentDetail(detail)
+        //let predicate = NSPredicate(format: "name == %@", argumentArray: ["Test2"])
+        //datamanager.findItem(predicate) { (result, error) in
+        //
+        //    guard let detail = result else {
+        //
+        //        guard let err = error  else {
+        //
+        //            return
+        //        }
+        //
+        //        self.output?.presentError(err)
+        //
+        //        return
+        //    }
+        //
+        //    self.output?.presentDetail(detail)
+        //}
+
+        guard let detail = forDetail else {
+
+            return
         }
+
+        self.output?.presentDetail(detail)
     }
 
 }

@@ -36,9 +36,9 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
 
         didSet {
 
-            rootView.nameValue = detail?.name
+            //rootView.nameValue = detail?.name
             //rootView.identValue = detail?.ident
-            rootView.redrawData()
+            self.rootInteractor.fetchData(self.detail)
         }
     }
 
@@ -55,7 +55,7 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
 
     func viewHasBeenLoaded() {
         
-        self.rootInteractor.fetchData()
+        self.rootInteractor.fetchData(self.detail)
     }
     
     func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model) {

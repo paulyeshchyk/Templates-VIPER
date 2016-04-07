@@ -15,7 +15,7 @@ typealias {{ prefix }}{{ module_info.name }}ModuleCancelAddDetailOutput = ()->()
 protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
     var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
-    func fetchData()
+    func fetchData(forDetail:NNDetailModel?)
 }
 
 typealias {{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock = (result:{{ prefix }}{{ module_info.name }}Model?, error:NSError?)->()

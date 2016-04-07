@@ -2,7 +2,7 @@
 //  NNDetailPresenter.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 06/04/2016.
+//  Created by Pavel Yeshchyk on 07/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -36,9 +36,9 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
         didSet {
 
-            rootView.nameValue = detail?.name
+            //rootView.nameValue = detail?.name
             //rootView.identValue = detail?.ident
-            rootView.redrawData()
+            self.rootInteractor.fetchData(self.detail)
         }
     }
 
@@ -55,7 +55,7 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
     func viewHasBeenLoaded() {
         
-        self.rootInteractor.fetchData()
+        self.rootInteractor.fetchData(self.detail)
     }
     
     func presentDetail(detail:NNDetailModel) {
