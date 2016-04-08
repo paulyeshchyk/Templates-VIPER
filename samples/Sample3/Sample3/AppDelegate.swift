@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var launcher:LauncherProtocol?
+//    var launcher:LauncherProtocol?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .Phone:
             
             let launcher = NNIPhoneLauncher(window: wnd)
-            self.launcher = launcher
+//            self.launcher = launcher
             launcher.launch()
             break;
          case .Pad:
             
             let launcher = NNIPadLauncher(window: wnd)
-            self.launcher = launcher
+//            self.launcher = launcher
             launcher.launch()
             break;
          default:

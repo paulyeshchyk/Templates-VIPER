@@ -122,6 +122,115 @@
          </Group>
       </Group>
       <Group
+         location = "group:ListTemplate"
+         name = "ListTemplate">
+         <Group
+            location = "group:Code"
+            name = "Code">
+            <Group
+               location = "group:Application Logic"
+               name = "Application Logic">
+               <Group
+                  location = "group:Interactor"
+                  name = "Interactor">
+                  <FileRef
+                     location = "group:interactor.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Manager"
+                  name = "Manager">
+                  <FileRef
+                     location = "group:datamanager.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Model"
+                  name = "Model">
+                  <FileRef
+                     location = "group:model.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Module"
+                  name = "Module">
+                  <FileRef
+                     location = "group:module.swift.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+            <FileRef
+               location = "group:protocols.swift.liquid">
+            </FileRef>
+            <Group
+               location = "group:User Interface"
+               name = "User Interface">
+               <Group
+                  location = "group:Presenter"
+                  name = "Presenter">
+                  <FileRef
+                     location = "group:presenter.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:View"
+                  name = "View">
+                  <FileRef
+                     location = "group:/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate/Code/User Interface/View/viewController.swift.liquid">
+                  </FileRef>
+                  <FileRef
+                     location = "group:viewController.xib.liquid">
+                  </FileRef>
+                  <FileRef
+                     location = "group:cell.swift.liquid">
+                  </FileRef>
+                  <FileRef
+                     location = "group:cell.xib.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate/ListTemplate.rambaspec">
+         </FileRef>
+         <Group
+            location = "group:Tests"
+            name = "Tests">
+            <Group
+               location = "group:Application Logic"
+               name = "Application Logic">
+               <Group
+                  location = "group:Interactor"
+                  name = "Interactor">
+               </Group>
+               <Group
+                  location = "group:Manager"
+                  name = "Manager">
+               </Group>
+               <Group
+                  location = "group:Model"
+                  name = "Model">
+               </Group>
+               <Group
+                  location = "group:Module"
+                  name = "Module">
+               </Group>
+            </Group>
+            <Group
+               location = "group:User Interface"
+               name = "User Interface">
+               <Group
+                  location = "group:Presenter"
+                  name = "Presenter">
+               </Group>
+               <Group
+                  location = "group:View"
+                  name = "View">
+               </Group>
+            </Group>
+         </Group>
+      </Group>
+      <Group
          location = "group:DetailTemplate"
          name = "DetailTemplate">
          <Group
@@ -373,115 +482,6 @@
          </Group>
          <FileRef
             location = "group:/Users/Pavel_Yeshchyk/projects/VIPER/templates/IPhoneLauncherTemplate/IPhoneLauncherTemplate.rambaspec">
-         </FileRef>
-         <Group
-            location = "group:Tests"
-            name = "Tests">
-            <Group
-               location = "group:Application Logic"
-               name = "Application Logic">
-               <Group
-                  location = "group:Interactor"
-                  name = "Interactor">
-               </Group>
-               <Group
-                  location = "group:Manager"
-                  name = "Manager">
-               </Group>
-               <Group
-                  location = "group:Model"
-                  name = "Model">
-               </Group>
-               <Group
-                  location = "group:Module"
-                  name = "Module">
-               </Group>
-            </Group>
-            <Group
-               location = "group:User Interface"
-               name = "User Interface">
-               <Group
-                  location = "group:Presenter"
-                  name = "Presenter">
-               </Group>
-               <Group
-                  location = "group:View"
-                  name = "View">
-               </Group>
-            </Group>
-         </Group>
-      </Group>
-      <Group
-         location = "group:ListTemplate"
-         name = "ListTemplate">
-         <Group
-            location = "group:Code"
-            name = "Code">
-            <Group
-               location = "group:Application Logic"
-               name = "Application Logic">
-               <Group
-                  location = "group:Interactor"
-                  name = "Interactor">
-                  <FileRef
-                     location = "group:interactor.swift.liquid">
-                  </FileRef>
-               </Group>
-               <Group
-                  location = "group:Manager"
-                  name = "Manager">
-                  <FileRef
-                     location = "group:datamanager.swift.liquid">
-                  </FileRef>
-               </Group>
-               <Group
-                  location = "group:Model"
-                  name = "Model">
-                  <FileRef
-                     location = "group:model.swift.liquid">
-                  </FileRef>
-               </Group>
-               <Group
-                  location = "group:Module"
-                  name = "Module">
-                  <FileRef
-                     location = "group:module.swift.liquid">
-                  </FileRef>
-               </Group>
-            </Group>
-            <FileRef
-               location = "group:protocols.swift.liquid">
-            </FileRef>
-            <Group
-               location = "group:User Interface"
-               name = "User Interface">
-               <Group
-                  location = "group:Presenter"
-                  name = "Presenter">
-                  <FileRef
-                     location = "group:presenter.swift.liquid">
-                  </FileRef>
-               </Group>
-               <Group
-                  location = "group:View"
-                  name = "View">
-                  <FileRef
-                     location = "group:/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate/Code/User Interface/View/viewController.swift.liquid">
-                  </FileRef>
-                  <FileRef
-                     location = "group:viewController.xib.liquid">
-                  </FileRef>
-                  <FileRef
-                     location = "group:cell.swift.liquid">
-                  </FileRef>
-                  <FileRef
-                     location = "group:cell.xib.liquid">
-                  </FileRef>
-               </Group>
-            </Group>
-         </Group>
-         <FileRef
-            location = "group:/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate/ListTemplate.rambaspec">
          </FileRef>
          <Group
             location = "group:Tests"

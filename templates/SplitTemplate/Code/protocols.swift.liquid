@@ -10,43 +10,47 @@ import Foundation
 import UIKit
 
 typealias {{ prefix }}{{ module_info.name }}AddDetailOutput = ()->()
-protocol {{ prefix }}{{ module_info.name }}ModuleProtocol:ModuleProtocol {
+protocol {{ prefix }}{{ module_info.name }}ModuleProtocol {
 
     var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol {get set}
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol {get set}
     var splitView:{{ prefix }}{{ module_info.name }}ViewProtocol {get set}
 
-    var masterPresenter:PresenterProtocol? {get set}
-    var detailPresenter:PresenterProtocol? {get set}
-    var emptyDetailPresenter:PresenterProtocol? {get set}
+    var masterPresenter: PresenterProtocol? {get set}
+    var detailPresenter: PresenterProtocol? {get set}
+    var emptyDetailPresenter: PresenterProtocol? {get set}
+
+    func makeRoot() -> UIViewController
+    func pushFrom(navigationController: UINavigationController)
+    func popFrom(navigationController: UINavigationController)
+
+    var view: UIViewController { get }
+    var rootWindow: UIWindow { get }
+
 }
 
-protocol {{ prefix }}{{ module_info.name }}ViewProtocol:ViewProtocol {
+protocol {{ prefix }}{{ module_info.name }}ViewProtocol {
 
-//    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? {get set}
+    var viewController: UIViewController { get }
     func setSplittedControllers(viewControllers:[UIViewController])
 }
 
-protocol {{ prefix }}{{ module_info.name }}InteractorProtocol:InteractorProtocol {
+protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
-    var selectedItem:{{ prefix }}{{ module_info.name }}Model? { get set }
+    var selectedItem: {{ prefix }}{{ module_info.name }}Model? { get set }
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterProtocol:PresenterProtocol {
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
-    var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol? {get set}
-    var masterPresenter:PresenterProtocol? {get set}
-    var detailPresenter:PresenterProtocol? {get set}
-    var emptyDetailPresenter:PresenterProtocol? {get set}
+    var viewController: UIViewController { get }
+    var interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol? {get set}
+    var masterPresenter: PresenterProtocol? {get set}
+    var detailPresenter: PresenterProtocol? {get set}
+    var emptyDetailPresenter: PresenterProtocol? {get set}
 
-    var selectedItem:{{ prefix }}{{ module_info.name }}Model? { get set }
+    var selectedItem: {{ prefix }}{{ module_info.name }}Model? { get set }
 
 
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, splitInteractor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
-
-//    var hasSelectedItem:Bool { get }
-
-}

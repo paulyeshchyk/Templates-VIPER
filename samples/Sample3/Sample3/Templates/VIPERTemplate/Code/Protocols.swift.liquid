@@ -21,7 +21,8 @@ protocol ModuleProtocol {
 
 protocol ViewProtocol {
 
-    var viewController:UIViewController {get}
+    var viewController: UIViewController { get }
+    var output: ViewOutputProtocol { get }
 }
 
 protocol ViewOutputProtocol {
@@ -35,12 +36,11 @@ protocol InteractorProtocol {
 
 protocol PresenterProtocol {
 
-    var viewController:UIViewController {get}
+    var viewController: UIViewController { get }
 }
 
 protocol LauncherProtocol {
 
-    func launch()
 }
 
 
@@ -49,4 +49,12 @@ protocol ListDatasourceProtocol {
     func numberOfItems() -> Int
     func itemAtIndex(index: Int) -> AnyObject
     func indexOfItem(item: AnyObject) -> Int
+}
+
+protocol ItemDatasourceProtocol {
+
+    func addItem() -> AnyObject
+    func deleteItem(item: AnyObject)
+    func saveItem(item: AnyObject)
+
 }
