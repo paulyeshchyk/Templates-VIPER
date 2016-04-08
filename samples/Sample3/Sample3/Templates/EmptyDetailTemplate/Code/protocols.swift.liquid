@@ -22,7 +22,7 @@ protocol {{ prefix }}{{ module_info.name }}ModuleProtocol {
 
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterProtocol: PresenterProtocol {
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
     var viewController: UIViewController { get }
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol)

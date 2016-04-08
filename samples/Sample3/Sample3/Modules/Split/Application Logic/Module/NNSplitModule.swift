@@ -38,6 +38,7 @@ class NNSplitModule: NSObject, NNSplitModuleProtocol, NNSplitViewPresenterOutput
 
         super.init()
         presenter.presenterOutput = self
+
     }
 
 
@@ -54,7 +55,7 @@ class NNSplitModule: NSObject, NNSplitModuleProtocol, NNSplitViewPresenterOutput
     func makeRoot() -> UIViewController{
 
         presenter.rebuildPresenters()
-        
+
         rootWindow.rootViewController = presenter.viewController
         rootWindow.makeKeyAndVisible()
         return self.view

@@ -14,9 +14,9 @@ typealias {{ prefix }}{{ module_info.name }}ModuleCancelAddDetailOutput = ()->()
 
 protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
-    var output:{{ prefix }}{{ module_info.name }}PresenterProtocol? { get set }
-    func fetchData(forDetail:NNDetailModel?)
-    func changeName(name:String, forDetail:NNDetailModel?)
+    var output:{{ prefix }}{{ module_info.name }}InteractorOutputProtocol? { get set }
+    func fetchData(predicate: NSPredicate)
+    func changeName(name:String, forDetail:{{ prefix }}{{ module_info.name }}Model?)
 }
 
 typealias {{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock = (result:{{ prefix }}{{ module_info.name }}Model?, error:NSError?)->()
@@ -24,6 +24,12 @@ typealias {{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock = (resu
 protocol {{ prefix }}{{ module_info.name }}ManagerProtocol {
 
     func findItem(usingPredicate:NSPredicate, completion:{{ prefix }}{{ module_info.name }}ManagerResultCompletionBlock)
+}
+
+protocol {{ prefix }}{{ module_info.name }}InteractorOutputProtocol {
+
+    func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model)
+
 }
 
 protocol {{ prefix }}{{ module_info.name }}ModuleProtocol {
@@ -56,14 +62,15 @@ protocol {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
 
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterProtocol: PresenterProtocol, ViewOutputProtocol {
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
     var viewController: UIViewController { get }
     var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? { get set }
     var detail: {{ prefix }}{{ module_info.name }}Model? { get set }
+    func viewHasBeenLoaded()
 
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
-    func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model)
+
     func presentError(error:NSError)
 
     func nameChanged(value:String)

@@ -8,6 +8,39 @@
 
 import UIKit
 
+protocol PresenterOutputProtocol {
+
+}
+
+protocol ViewOutputProtocol {
+
+    func viewHasBeenLoaded()
+}
+
+protocol ViewProtocol {
+
+    var viewController: UIViewController { get }
+    var output: ViewOutputProtocol? { get set }
+}
+
+protocol InteractorOutputProtocol {
+
+}
+
+protocol InteractorProtocol {
+
+    var output: InteractorOutputProtocol? { get set }
+}
+
+
+protocol PresenterProtocol {
+
+    var view: ViewProtocol? { get set }
+    var interactor: InteractorProtocol? { get set }
+    var output: PresenterOutputProtocol? { get set }
+}
+
+
 protocol ModuleProtocol {
 
     func makeRoot()->UIViewController
@@ -19,30 +52,9 @@ protocol ModuleProtocol {
 
 }
 
-protocol ViewProtocol {
-
-    var viewController: UIViewController { get }
-    var output: ViewOutputProtocol { get }
-}
-
-protocol ViewOutputProtocol {
-
-    func viewHasBeenLoaded()
-}
-
-protocol InteractorProtocol {
-
-}
-
-protocol PresenterProtocol {
-
-    var viewController: UIViewController { get }
-}
-
 protocol LauncherProtocol {
 
 }
-
 
 protocol ListDatasourceProtocol {
 
@@ -58,3 +70,4 @@ protocol ItemDatasourceProtocol {
     func saveItem(item: AnyObject)
 
 }
+

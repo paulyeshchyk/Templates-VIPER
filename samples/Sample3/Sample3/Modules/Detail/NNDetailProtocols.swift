@@ -14,8 +14,8 @@ typealias NNDetailModuleCancelAddDetailOutput = ()->()
 
 protocol NNDetailInteractorProtocol {
 
-    var output:NNDetailPresenterProtocol? { get set }
-    func fetchData(forDetail:NNDetailModel?)
+    var output:NNDetailInteractorOutputProtocol? { get set }
+    func fetchData(predicate: NSPredicate)
     func changeName(name:String, forDetail:NNDetailModel?)
 }
 
@@ -24,6 +24,12 @@ typealias NNDetailManagerResultCompletionBlock = (result:NNDetailModel?, error:N
 protocol NNDetailManagerProtocol {
 
     func findItem(usingPredicate:NSPredicate, completion:NNDetailManagerResultCompletionBlock)
+}
+
+protocol NNDetailInteractorOutputProtocol {
+
+    func presentDetail(detail:NNDetailModel)
+
 }
 
 protocol NNDetailModuleProtocol {
@@ -56,14 +62,15 @@ protocol NNDetailPresenterOutputProtocol {
 
 }
 
-protocol NNDetailPresenterProtocol: PresenterProtocol, ViewOutputProtocol {
+protocol NNDetailPresenterProtocol {
 
     var viewController: UIViewController { get }
     var output:NNDetailPresenterOutputProtocol? { get set }
     var detail: NNDetailModel? { get set }
+    func viewHasBeenLoaded()
 
     init(view:NNDetailViewProtocol, interactor:NNDetailInteractorProtocol)
-    func presentDetail(detail:NNDetailModel)
+
     func presentError(error:NSError)
 
     func nameChanged(value:String)

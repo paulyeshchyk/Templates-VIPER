@@ -9,16 +9,23 @@
 import Foundation
 import UIKit
 
-typealias {{ prefix }}{{ module_info.name }}AddDetailOutput = ()->()
+typealias {{ prefix }}{{ module_info.name }}AddDetailOutput = () -> ()
+typealias {{ prefix }}{{ module_info.name }}MasterViewCallback = () -> UIViewController
+typealias {{ prefix }}{{ module_info.name }}DetailViewCallback = () -> UIViewController
+typealias {{ prefix }}{{ module_info.name }}EmptyViewCallback = () -> UIViewController
+
+protocol {{ prefix }}{{ module_info.name }}ViewPresenterOutput {
+
+    var masterViewCallback: {{ prefix }}{{ module_info.name }}MasterViewCallback? { get set }
+    var detailViewCallback: {{ prefix }}{{ module_info.name }}DetailViewCallback? { get set }
+    var emptyViewCallback: {{ prefix }}{{ module_info.name }}EmptyViewCallback? { get set }
+}
+
 protocol {{ prefix }}{{ module_info.name }}ModuleProtocol {
 
     var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol {get set}
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol {get set}
     var splitView:{{ prefix }}{{ module_info.name }}ViewProtocol {get set}
-
-    var masterPresenter: PresenterProtocol? {get set}
-    var detailPresenter: PresenterProtocol? {get set}
-    var emptyDetailPresenter: PresenterProtocol? {get set}
 
     func makeRoot() -> UIViewController
     func pushFrom(navigationController: UINavigationController)
@@ -42,20 +49,14 @@ protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
 
 protocol {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
+    var presenterOutput: {{ prefix }}{{ module_info.name }}ViewPresenterOutput? { get set }
     var viewController: UIViewController { get }
     var interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol? {get set}
-    var masterPresenter: PresenterProtocol? {get set}
-    var detailPresenter: PresenterProtocol? {get set}
-    var emptyDetailPresenter: PresenterProtocol? {get set}
 
     var selectedItem: {{ prefix }}{{ module_info.name }}Model? { get set }
 
-
+    func rebuildPresenters()
     init(view:{{ prefix }}{{ module_info.name }}ViewProtocol, splitInteractor:{{ prefix }}{{ module_info.name }}InteractorProtocol)
-}
-
-protocol {{ prefix }}{{ module_info.name }}PresenterOutputProtocol {
-
-//    var hasSelectedItem:Bool { get }
 
 }
+

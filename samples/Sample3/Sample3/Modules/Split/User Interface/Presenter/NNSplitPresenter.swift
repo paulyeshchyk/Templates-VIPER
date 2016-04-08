@@ -49,16 +49,18 @@ class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
 
         var vcs:[UIViewController] = []
 
+
+
         guard let output = self.presenterOutput else {
-            
+
             return
         }
-        
+
         guard let masterViewCallback = output.masterViewCallback else {
-            
+
             return
         }
-        
+
         let masterView = masterViewCallback()
         vcs.append(masterView)
 
@@ -68,19 +70,20 @@ class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
         if ((hasSelectedItem != nil) && hasSelectedItem?.text.characters.count != 0) {
 
             guard let detailViewCallback = output.detailViewCallback else {
-                
+
                 return
             }
 
             let detail = detailViewCallback()
             vcs.append(detail)
+
         } else {
 
             guard let emptyViewCallback = output.emptyViewCallback else {
-                
+
                 return
             }
-            
+
             let empty = emptyViewCallback()
             vcs.append(empty)
         }

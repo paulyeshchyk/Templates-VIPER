@@ -43,22 +43,21 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
         rootWindow = window
         super.init()
 
-
         splitModule.masterViewCallback = {() in
-            
+
             return self.listModule.presenter.viewController
         }
-        
+
         splitModule.detailViewCallback = {() in
-            
+
             return self.detailModule.presenter.viewController
         }
-        
+
         splitModule.emptyViewCallback = {() in
-            
+
             return self.emptyDetailModule.presenter.viewController
         }
-        
+
         listModule.openOutput = {(listItem) in
 
             let detailItem = NNDetailModel(nameValue: listItem.text)

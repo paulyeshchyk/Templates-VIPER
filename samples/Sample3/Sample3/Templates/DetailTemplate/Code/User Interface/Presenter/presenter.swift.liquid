@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ module_info.name }}PresenterProtocol {
+class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ module_info.name }}PresenterProtocol, {{ prefix }}{{ module_info.name }}InteractorOutputProtocol {
 
 	//MARK: - NSObject    
 	
@@ -36,7 +36,8 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
 
         didSet {
 
-            self.rootInteractor.fetchData(self.detail)
+            let predicate = NSPredicate (format: "nameValue == %@", argumentArray: ["Test"])
+            self.rootInteractor.fetchData(predicate)
         }
     }
 
@@ -56,9 +57,10 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
         let saveItem = UIBarButtonItem(barButtonSystemItem:.Save, target: self, action: #selector({{ prefix }}{{ module_info.name }}Presenter.saveItem(_:)))
         self.rootView.viewController.navigationItem.rightBarButtonItems = [saveItem]
 
-        self.rootInteractor.fetchData(self.detail)
+        let predicate = NSPredicate (format: "nameValue == %@", argumentArray: ["Test"])
+        self.rootInteractor.fetchData(predicate)
     }
-    
+
     func nameChanged(value: String) {
 
         self.rootInteractor.changeName(value, forDetail: self.detail)
@@ -68,16 +70,16 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
 
     }
 
-    func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model) {
-
-		self.rootView.nameValue = detail.name
-        self.rootView.sampleError = nil
-    }
-    
     func presentError(error: NSError) {
         
         self.rootView.nameValue = nil
         self.rootView.sampleError = error.localizedDescription
     }
-    
+
+    //MARK: - {{ prefix }}{{ module_info.name }}InteractorOutputProtocol
+    func presentDetail(detail:{{ prefix }}{{ module_info.name }}Model) {
+
+        self.rootView.nameValue = detail.name
+        self.rootView.sampleError = nil
+    }
 }

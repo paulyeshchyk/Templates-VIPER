@@ -25,6 +25,7 @@ templates:
 - {name: EmptyDetailTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/EmptyDetailTemplate'}
 - {name: ListTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/ListTemplate'}
 - {name: SplitTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/SplitTemplate'}
+- {name: SuperbTemplate, local: '/Users/Pavel_Yeshchyk/projects/VIPER/templates/SuperbTemplate'}
 
 #- {name: remote_template_name, git: 'https://github.com/igrekde/remote_template'}
 #- {name: catalog_template_name}

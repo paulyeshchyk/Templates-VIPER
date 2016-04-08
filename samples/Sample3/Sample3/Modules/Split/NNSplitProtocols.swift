@@ -15,7 +15,7 @@ typealias NNSplitDetailViewCallback = () -> UIViewController
 typealias NNSplitEmptyViewCallback = () -> UIViewController
 
 protocol NNSplitViewPresenterOutput {
-    
+
     var masterViewCallback: NNSplitMasterViewCallback? { get set }
     var detailViewCallback: NNSplitDetailViewCallback? { get set }
     var emptyViewCallback: NNSplitEmptyViewCallback? { get set }
@@ -57,4 +57,6 @@ protocol NNSplitPresenterProtocol {
 
     func rebuildPresenters()
     init(view:NNSplitViewProtocol, splitInteractor:NNSplitInteractorProtocol)
+
 }
+

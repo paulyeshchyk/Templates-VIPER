@@ -26,7 +26,7 @@ class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.n
         self.root = self.splitModule.makeRoot()
     }
 
-    var splitModule:{{ prefix }}SplitModuleProtocol
+    var splitModule:{{ prefix }}SplitModule
     let listModule:{{ prefix }}ListModuleProtocol
     var detailModule:{{ prefix }}DetailModuleProtocol
     let emptyDetailModule:{{ prefix }}EmptyDetailModuleProtocol
@@ -43,9 +43,20 @@ class {{ prefix }}{{ module_info.name }}: NSObject, {{ prefix }}{{ module_info.n
         rootWindow = window
         super.init()
 
-        splitModule.masterPresenter = listModule.presenter
-        splitModule.detailPresenter = detailModule.presenter
-        splitModule.emptyDetailPresenter = emptyDetailModule.presenter
+        splitModule.masterViewCallback = {() in
+
+            return self.listModule.presenter.viewController
+        }
+
+        splitModule.detailViewCallback = {() in
+
+            return self.detailModule.presenter.viewController
+        }
+
+        splitModule.emptyViewCallback = {() in
+
+            return self.emptyDetailModule.presenter.viewController
+        }
 
         listModule.openOutput = {(listItem) in
 

@@ -24,7 +24,6 @@ class NNDetailModule: NSObject, NNDetailModuleProtocol, NNDetailPresenterOutputP
     var rootWindow:UIWindow
     var presenter:NNDetailPresenterProtocol
     var rootView:NNDetailViewProtocol
-    var rootInteractor:NNDetailInteractorProtocol
     var view: UIViewController {
         
         get {
@@ -47,10 +46,11 @@ class NNDetailModule: NSObject, NNDetailModuleProtocol, NNDetailPresenterOutputP
     required init(window:UIWindow) {
         
         rootWindow = window
-        rootInteractor = NNDetailInteractor()
+
+        let interactor = NNDetailInteractor()
         
         rootView = NNDetailViewController(nibName:"NNDetailViewController", bundle: NSBundle.mainBundle())
-        presenter = NNDetailPresenter(view: rootView, interactor:rootInteractor)
+        presenter = NNDetailPresenter(view: rootView, interactor: interactor)
         rootView.output = presenter
         
         super.init()

@@ -22,6 +22,97 @@
          </FileRef>
       </Group>
       <Group
+         location = "group:SuperbTemplate"
+         name = "SuperbTemplate">
+         <Group
+            location = "group:Code"
+            name = "Code">
+            <Group
+               location = "group:Application Logic"
+               name = "Application Logic">
+               <Group
+                  location = "group:Interactor"
+                  name = "Interactor">
+                  <FileRef
+                     location = "group:interactor.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Manager"
+                  name = "Manager">
+                  <FileRef
+                     location = "group:manager.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Model"
+                  name = "Model">
+                  <FileRef
+                     location = "group:model.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:Module"
+                  name = "Module">
+                  <FileRef
+                     location = "group:module.swift.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+            <FileRef
+               location = "group:protocols.swift.liquid">
+            </FileRef>
+            <Group
+               location = "group:Service"
+               name = "Service">
+               <FileRef
+                  location = "group:service.h.liquid">
+               </FileRef>
+               <FileRef
+                  location = "group:service.m.liquid">
+               </FileRef>
+               <FileRef
+                  location = "group:service.swift.liquid">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:User Interface"
+               name = "User Interface">
+               <Group
+                  location = "group:Presenter"
+                  name = "Presenter">
+                  <FileRef
+                     location = "group:presenter.swift.liquid">
+                  </FileRef>
+               </Group>
+               <Group
+                  location = "group:View"
+                  name = "View">
+                  <FileRef
+                     location = "group:viewController.swift.liquid">
+                  </FileRef>
+                  <FileRef
+                     location = "group:viewController.xib.liquid">
+                  </FileRef>
+               </Group>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:SuperbTemplate.rambaspec">
+         </FileRef>
+         <Group
+            location = "group:Tests"
+            name = "Tests">
+            <Group
+               location = "group:Service"
+               name = "Service">
+               <FileRef
+                  location = "group:service_tests.swift.liquid">
+               </FileRef>
+            </Group>
+         </Group>
+      </Group>
+      <Group
          location = "group:SplitTemplate"
          name = "SplitTemplate">
          <Group

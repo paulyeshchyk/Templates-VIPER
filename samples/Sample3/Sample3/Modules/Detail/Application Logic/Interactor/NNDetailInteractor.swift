@@ -23,37 +23,12 @@ class NNDetailInteractor: NSObject, NNDetailInteractorProtocol {
     }
 
 	//MARK: - NNDetailInteractorProtocol
-    var output:NNDetailPresenterProtocol?
+    var output:NNDetailInteractorOutputProtocol?
 
-    func fetchData(forDetail:NNDetailModel?) {
-		
-		// ask datamanager for new data
-		//...
-		//call output's dataHasBeenFetched() when done
+    func fetchData(predicate: NSPredicate) {
 
-        //let predicate = NSPredicate(format: "name == %@", argumentArray: ["Test2"])
-        //datamanager.findItem(predicate) { (result, error) in
-        //
-        //    guard let detail = result else {
-        //
-        //        guard let err = error  else {
-        //
-        //            return
-        //        }
-        //
-        //        self.output?.presentError(err)
-        //
-        //        return
-        //    }
-        //
-        //    self.output?.presentDetail(detail)
-        //}
 
-        guard let detail = forDetail else {
-
-            return
-        }
-
+        let detail = NNDetailModel(nameValue:"Test")
         self.output?.presentDetail(detail)
     }
 

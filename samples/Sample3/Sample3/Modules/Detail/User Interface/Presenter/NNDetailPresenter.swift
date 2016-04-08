@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
+class NNDetailPresenter: NSObject, NNDetailPresenterProtocol, NNDetailInteractorOutputProtocol {
 
 	//MARK: - NSObject    
 	
@@ -36,7 +36,8 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
         didSet {
 
-            self.rootInteractor.fetchData(self.detail)
+            let predicate = NSPredicate (format: "nameValue == %@", argumentArray: ["Test"])
+            self.rootInteractor.fetchData(predicate)
         }
     }
 
@@ -56,9 +57,10 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
         let saveItem = UIBarButtonItem(barButtonSystemItem:.Save, target: self, action: #selector(NNDetailPresenter.saveItem(_:)))
         self.rootView.viewController.navigationItem.rightBarButtonItems = [saveItem]
 
-        self.rootInteractor.fetchData(self.detail)
+        let predicate = NSPredicate (format: "nameValue == %@", argumentArray: ["Test"])
+        self.rootInteractor.fetchData(predicate)
     }
-    
+
     func nameChanged(value: String) {
 
         self.rootInteractor.changeName(value, forDetail: self.detail)
@@ -68,16 +70,16 @@ class NNDetailPresenter: NSObject, NNDetailPresenterProtocol {
 
     }
 
-    func presentDetail(detail:NNDetailModel) {
-
-		self.rootView.nameValue = detail.name
-        self.rootView.sampleError = nil
-    }
-    
     func presentError(error: NSError) {
         
         self.rootView.nameValue = nil
         self.rootView.sampleError = error.localizedDescription
     }
-    
+
+    //MARK: - NNDetailInteractorOutputProtocol
+    func presentDetail(detail:NNDetailModel) {
+
+        self.rootView.nameValue = detail.name
+        self.rootView.sampleError = nil
+    }
 }

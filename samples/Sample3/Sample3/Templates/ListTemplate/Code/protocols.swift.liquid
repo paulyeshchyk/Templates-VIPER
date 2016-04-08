@@ -67,7 +67,7 @@ protocol {{ prefix }}{{ module_info.name }}InteractorProtocol {
     func listItemAtIndex(index:Int)->{{ prefix }}{{ module_info.name }}Model
 }
 
-protocol {{ prefix }}{{ module_info.name }}PresenterProtocol: PresenterProtocol {
+protocol {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
     var viewController: UIViewController { get }
     var output:{{ prefix }}{{ module_info.name }}PresenterOutputProtocol? { get set }
