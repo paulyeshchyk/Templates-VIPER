@@ -2,7 +2,7 @@
 //  NNDetailProtocols.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 07/04/2016.
+//  Created by Pavel Yeshchyk on 08/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -26,17 +26,25 @@ protocol NNDetailManagerProtocol {
     func findItem(usingPredicate:NSPredicate, completion:NNDetailManagerResultCompletionBlock)
 }
 
-protocol NNDetailModuleProtocol:ModuleProtocol {
+protocol NNDetailModuleProtocol {
 
     var saveOutput: NNDetailModuleSaveOutput? { get set}
     var cancelOutput: NNDetailModuleCancelAddDetailOutput? {get set}
     var detail: NNDetailModel? { get set }
-    var view:UIViewController { get }
     var presenter:NNDetailPresenterProtocol { get set}
+
+    func makeRoot()->UIViewController
+    func pushFrom(navigationController:UINavigationController)
+    func popFrom(navigationController:UINavigationController)
+
+    var view: UIViewController { get }
+    var rootWindow: UIWindow { get }
+
 }
 
-protocol NNDetailViewProtocol:ViewProtocol {
+protocol NNDetailViewProtocol {
 
+    var viewController: UIViewController { get }
     var output:NNDetailPresenterProtocol? { get set }
 
     var nameValue:String? { get set }
@@ -48,8 +56,9 @@ protocol NNDetailPresenterOutputProtocol {
 
 }
 
-protocol NNDetailPresenterProtocol:PresenterProtocol, ViewOutputProtocol {
+protocol NNDetailPresenterProtocol: PresenterProtocol, ViewOutputProtocol {
 
+    var viewController: UIViewController { get }
     var output:NNDetailPresenterOutputProtocol? { get set }
     var detail: NNDetailModel? { get set }
 

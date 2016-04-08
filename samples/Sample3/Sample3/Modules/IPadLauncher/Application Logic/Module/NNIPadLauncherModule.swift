@@ -2,7 +2,7 @@
 //  NNIPadLauncherModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 07/04/2016.
+//  Created by Pavel Yeshchyk on 08/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -26,7 +26,7 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
         self.root = self.splitModule.makeRoot()
     }
 
-    var splitModule:NNSplitModuleProtocol
+    var splitModule:NNSplitModule
     let listModule:NNListModuleProtocol
     var detailModule:NNDetailModuleProtocol
     let emptyDetailModule:NNEmptyDetailModuleProtocol
@@ -43,10 +43,22 @@ class NNIPadLauncher: NSObject, NNIPadLauncherProtocol {
         rootWindow = window
         super.init()
 
-        splitModule.masterPresenter = listModule.presenter
-        splitModule.detailPresenter = detailModule.presenter
-        splitModule.emptyDetailPresenter = emptyDetailModule.presenter
 
+        splitModule.masterViewCallback = {() in
+            
+            return self.listModule.presenter.viewController
+        }
+        
+        splitModule.detailViewCallback = {() in
+            
+            return self.detailModule.presenter.viewController
+        }
+        
+        splitModule.emptyViewCallback = {() in
+            
+            return self.emptyDetailModule.presenter.viewController
+        }
+        
         listModule.openOutput = {(listItem) in
 
             let detailItem = NNDetailModel(nameValue: listItem.text)

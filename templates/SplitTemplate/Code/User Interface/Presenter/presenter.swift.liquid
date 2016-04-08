@@ -11,6 +11,7 @@ import UIKit
 
 class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ module_info.name }}PresenterProtocol {
 
+    var presenterOutput: {{ prefix }}{{ module_info.name }}ViewPresenterOutput?
     var splitView: {{ prefix }}{{ module_info.name }}ViewProtocol
     var interactor: {{ prefix }}{{ module_info.name }}InteractorProtocol?
     var selectedItem: {{ prefix }}{{ module_info.name }}Model? {
@@ -18,30 +19,6 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
         didSet {
 
             self.interactor?.selectedItem = self.selectedItem
-            self.rebuildPresenters()
-        }
-    }
-
-    var masterPresenter:PresenterProtocol? {
-
-        didSet {
-
-            self.rebuildPresenters()
-        }
-    }
-
-    var detailPresenter:PresenterProtocol? {
-
-        didSet {
-
-            self.rebuildPresenters()
-        }
-    }
-
-    var emptyDetailPresenter:PresenterProtocol? {
-
-        didSet {
-
             self.rebuildPresenters()
         }
     }
@@ -72,30 +49,43 @@ class {{ prefix }}{{ module_info.name }}Presenter: NSObject, {{ prefix }}{{ modu
 
         var vcs:[UIViewController] = []
 
-        guard let master = self.masterPresenter else {
+
+
+        guard let output = self.presenterOutput else {
 
             return
         }
-        vcs.append(master.viewController)
+
+        guard let masterViewCallback = output.masterViewCallback else {
+
+            return
+        }
+
+        let masterView = masterViewCallback()
+        vcs.append(masterView)
 
 
         let hasSelectedItem = interactor.selectedItem
 
         if ((hasSelectedItem != nil) && hasSelectedItem?.text.characters.count != 0) {
 
-            guard let detail = self.detailPresenter else {
+            guard let detailViewCallback = output.detailViewCallback else {
 
                 return
             }
 
-            vcs.append(detail.viewController)
+            let detail = detailViewCallback()
+            vcs.append(detail)
+
         } else {
 
-            guard let emptyDetail = self.emptyDetailPresenter else {
+            guard let emptyViewCallback = output.emptyViewCallback else {
 
                 return
             }
-            vcs.append(emptyDetail.viewController)
+
+            let empty = emptyViewCallback()
+            vcs.append(empty)
         }
 
         splitView.setSplittedControllers(vcs)

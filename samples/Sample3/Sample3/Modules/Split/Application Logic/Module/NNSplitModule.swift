@@ -2,49 +2,28 @@
 //  NNSplitModule.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 07/04/2016.
+//  Created by Pavel Yeshchyk on 08/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
 import UIKit
 
-class NNSplitModule: NNSplitModuleProtocol {
+class NNSplitModule: NSObject, NNSplitModuleProtocol, NNSplitViewPresenterOutput {
 
     var presenter:NNSplitPresenterProtocol
     var splitView:NNSplitViewProtocol
     var interactor:NNSplitInteractorProtocol
     var rootWindow:UIWindow
 
+    var masterViewCallback: NNSplitMasterViewCallback?
+    var detailViewCallback: NNSplitDetailViewCallback?
+    var emptyViewCallback: NNSplitEmptyViewCallback?
 
     var view: UIViewController {
 
         get {
 
-            return self.splitView.viewController
-        }
-    }
-
-    var emptyDetailPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.emptyDetailPresenter = emptyDetailPresenter
-        }
-    }
-
-    var masterPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.masterPresenter = masterPresenter
-        }
-    }
-
-    var detailPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.detailPresenter = detailPresenter
+            return presenter.viewController
         }
     }
 
@@ -57,6 +36,8 @@ class NNSplitModule: NNSplitModuleProtocol {
 
         presenter = NNSplitPresenter(view: splitView, splitInteractor: interactor)
 
+        super.init()
+        presenter.presenterOutput = self
     }
 
 
@@ -72,7 +53,9 @@ class NNSplitModule: NNSplitModuleProtocol {
 
     func makeRoot() -> UIViewController{
 
-        rootWindow.rootViewController = self.view
+        presenter.rebuildPresenters()
+        
+        rootWindow.rootViewController = presenter.viewController
         rootWindow.makeKeyAndVisible()
         return self.view
     }

@@ -2,7 +2,7 @@
 //  NNListProtocols.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 07/04/2016.
+//  Created by Pavel Yeshchyk on 08/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 
 typealias NNListModuleAddDetailOutput = () -> ()
 typealias NNListModuleOpenDetailOutput = (listItem: NNListModel)->()
-protocol NNListModuleProtocol: ModuleProtocol {
+protocol NNListModuleProtocol {
 
     var presenter:NNListPresenterProtocol { get set }
     var listView:NNListViewProtocol { get set }
@@ -20,10 +20,19 @@ protocol NNListModuleProtocol: ModuleProtocol {
     init(window:UIWindow, datasource: NNListDatasourceProtocol)
     func updatePonso(ponso:NNListModel)
     func refreshPonso(ponso:NNListModel)
+
+    func makeRoot()->UIViewController
+    func pushFrom(navigationController:UINavigationController)
+    func popFrom(navigationController:UINavigationController)
+
+    var view: UIViewController { get }
+    var rootWindow: UIWindow { get }
+
 }
 
-protocol NNListViewProtocol:ViewProtocol {
+protocol NNListViewProtocol {
 
+    var viewController: UIViewController { get }
     var input:NNListInteractorProtocol? { get set }
     var output:NNListPresenterProtocol? { get set }
     func reloadTableview()
@@ -35,11 +44,15 @@ protocol NNListDataSourceListenerProtocol {
     func hasUpdatedData()
 }
 
-protocol NNListDatasourceProtocol: ListDatasourceProtocol {
+protocol NNListDatasourceProtocol {
 
     var listener:NNListDataSourceListenerProtocol? { get set }
     func updatePonso(ponso:NNListModel)
     func addPonso(ponso:NNListModel)
+
+    func numberOfItems() -> Int
+    func itemAtIndex(index: Int) -> AnyObject
+    func indexOfItem(item: AnyObject) -> Int
 }
 
 protocol NNListInteractorProtocol {
@@ -54,8 +67,9 @@ protocol NNListInteractorProtocol {
     func listItemAtIndex(index:Int)->NNListModel
 }
 
-protocol NNListPresenterProtocol:PresenterProtocol {
+protocol NNListPresenterProtocol {
 
+    var viewController: UIViewController { get }
     var output:NNListPresenterOutputProtocol? { get set }
 
     init(view:NNListViewProtocol, interactor:NNListInteractorProtocol)

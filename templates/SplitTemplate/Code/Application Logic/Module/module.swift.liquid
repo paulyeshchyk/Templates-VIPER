@@ -8,43 +8,22 @@
 
 import UIKit
 
-class {{ prefix }}{{ module_info.name }}Module: {{ prefix }}{{ module_info.name }}ModuleProtocol {
+class {{ prefix }}{{ module_info.name }}Module: NSObject, {{ prefix }}{{ module_info.name }}ModuleProtocol, {{ prefix }}{{ module_info.name }}ViewPresenterOutput {
 
     var presenter:{{ prefix }}{{ module_info.name }}PresenterProtocol
     var splitView:{{ prefix }}{{ module_info.name }}ViewProtocol
     var interactor:{{ prefix }}{{ module_info.name }}InteractorProtocol
     var rootWindow:UIWindow
 
+    var masterViewCallback: {{ prefix }}{{ module_info.name }}MasterViewCallback?
+    var detailViewCallback: {{ prefix }}{{ module_info.name }}DetailViewCallback?
+    var emptyViewCallback: {{ prefix }}{{ module_info.name }}EmptyViewCallback?
 
     var view: UIViewController {
 
         get {
 
-            return self.splitView.viewController
-        }
-    }
-
-    var emptyDetailPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.emptyDetailPresenter = emptyDetailPresenter
-        }
-    }
-
-    var masterPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.masterPresenter = masterPresenter
-        }
-    }
-
-    var detailPresenter: PresenterProtocol? {
-
-        didSet {
-
-            self.presenter.detailPresenter = detailPresenter
+            return presenter.viewController
         }
     }
 
@@ -56,6 +35,9 @@ class {{ prefix }}{{ module_info.name }}Module: {{ prefix }}{{ module_info.name 
         interactor = {{ prefix }}{{ module_info.name }}Interactor()
 
         presenter = {{ prefix }}{{ module_info.name }}Presenter(view: splitView, splitInteractor: interactor)
+
+        super.init()
+        presenter.presenterOutput = self
 
     }
 
@@ -72,7 +54,9 @@ class {{ prefix }}{{ module_info.name }}Module: {{ prefix }}{{ module_info.name 
 
     func makeRoot() -> UIViewController{
 
-        rootWindow.rootViewController = self.view
+        presenter.rebuildPresenters()
+
+        rootWindow.rootViewController = presenter.viewController
         rootWindow.makeKeyAndVisible()
         return self.view
     }

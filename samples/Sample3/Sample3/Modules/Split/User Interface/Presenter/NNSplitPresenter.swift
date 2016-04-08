@@ -2,7 +2,7 @@
 //  NNSplitPresenter.swift
 //  Sample3.xcodeproj
 //
-//  Created by Pavel Yeshchyk on 07/04/2016.
+//  Created by Pavel Yeshchyk on 08/04/2016.
 //  Copyright 2016 NoName. All rights reserved.
 //
 
@@ -11,6 +11,7 @@ import UIKit
 
 class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
 
+    var presenterOutput: NNSplitViewPresenterOutput?
     var splitView: NNSplitViewProtocol
     var interactor: NNSplitInteractorProtocol?
     var selectedItem: NNSplitModel? {
@@ -18,30 +19,6 @@ class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
         didSet {
 
             self.interactor?.selectedItem = self.selectedItem
-            self.rebuildPresenters()
-        }
-    }
-
-    var masterPresenter:PresenterProtocol? {
-
-        didSet {
-
-            self.rebuildPresenters()
-        }
-    }
-
-    var detailPresenter:PresenterProtocol? {
-
-        didSet {
-
-            self.rebuildPresenters()
-        }
-    }
-
-    var emptyDetailPresenter:PresenterProtocol? {
-
-        didSet {
-
             self.rebuildPresenters()
         }
     }
@@ -72,30 +49,40 @@ class NNSplitPresenter: NSObject, NNSplitPresenterProtocol {
 
         var vcs:[UIViewController] = []
 
-        guard let master = self.masterPresenter else {
-
+        guard let output = self.presenterOutput else {
+            
             return
         }
-        vcs.append(master.viewController)
+        
+        guard let masterViewCallback = output.masterViewCallback else {
+            
+            return
+        }
+        
+        let masterView = masterViewCallback()
+        vcs.append(masterView)
 
 
         let hasSelectedItem = interactor.selectedItem
 
         if ((hasSelectedItem != nil) && hasSelectedItem?.text.characters.count != 0) {
 
-            guard let detail = self.detailPresenter else {
-
+            guard let detailViewCallback = output.detailViewCallback else {
+                
                 return
             }
 
-            vcs.append(detail.viewController)
+            let detail = detailViewCallback()
+            vcs.append(detail)
         } else {
 
-            guard let emptyDetail = self.emptyDetailPresenter else {
-
+            guard let emptyViewCallback = output.emptyViewCallback else {
+                
                 return
             }
-            vcs.append(emptyDetail.viewController)
+            
+            let empty = emptyViewCallback()
+            vcs.append(empty)
         }
 
         splitView.setSplittedControllers(vcs)
