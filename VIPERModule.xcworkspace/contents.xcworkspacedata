@@ -2,7 +2,13 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:classref.md">
+   </FileRef>
+   <FileRef
       location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:installation.md">
    </FileRef>
    <Group
       location = "group:templates"
